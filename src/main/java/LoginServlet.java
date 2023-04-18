@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @WebServlet(name = "ServletLogin", urlPatterns = {"/servlet-login"})
-public class Login extends HttpServlet {
+public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
         doPost(req, resp);
@@ -15,6 +15,7 @@ public class Login extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException {
+
         User usuario = (User) req.getSession().getAttribute("usuarioSesion");
         if (usuario != null) {
             homePage(resp, usuario);
@@ -28,7 +29,7 @@ public class Login extends HttpServlet {
                 req.getSession().setAttribute("usuarioSesion", usuario);
                 homePage(resp, usuario);
             } else {
-                resp.sendRedirect("/AplicativoWebEjemploUno/login/login.jsp");
+                resp.sendRedirect("/WiseUp/login/login.jsp");
             }
         }
     }
