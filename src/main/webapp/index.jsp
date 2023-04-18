@@ -1,5 +1,5 @@
 <html>
 <body>
-<h2>Hello World!</h2>
+<h2><a href="/WiseUp/login.jsp">Login</a></h2>
 </body>
 </html>
