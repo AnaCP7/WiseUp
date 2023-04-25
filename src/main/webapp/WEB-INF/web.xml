@@ -4,4 +4,9 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+  <context-param>
+    <param-name>sessionTimeout</param-name>
+    <param-value>15</param-value>
+  </context-param>
 </web-app>
