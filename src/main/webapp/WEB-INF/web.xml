@@ -9,4 +9,15 @@
     <param-name>sessionTimeout</param-name>
     <param-value>15</param-value>
   </context-param>
+
+  <servlet>
+    <servlet-name>LoginFormServlet</servlet-name>
+    <servlet-class>com.example.myapp.LoginFormServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>LoginFormServlet</servlet-name>
+    <url-pattern>/loginform</url-pattern>
+  </servlet-mapping>
+
 </web-app>
