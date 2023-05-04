@@ -1,4 +1,8 @@
-package edu.wiseup;
+package edu.wiseup.web.servlet;
+
+import edu.wiseup.persistence.connector.MySQLConnector;
+import edu.wiseup.persistence.manager.UserManager;
+import edu.wiseup.web.servlet.dto.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -6,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 @WebServlet(urlPatterns = {"/login-servlet"})
 public class LoginServlet extends HttpServlet {
@@ -24,17 +30,23 @@ public class LoginServlet extends HttpServlet {
         else {
             String userEntered = req.getParameter("user");
             String passEntered = req.getParameter("pass");
+            String passRequired = "";
 
-            if ((userEntered != null) && (passEntered != null)) {
+            try(Connection con = new MySQLConnector().getMySQLConnection()) {
+                UserManager man = new UserManager();
+                passRequired = man.findByUsername(con, userEntered).getPassword();
+            } catch (ClassNotFoundException | SQLException e) {
+                resp.sendRedirect("/WiseUp/login/login.jsp"); //Mandar con aviso de que no es correcto
+            }
+
+            if (passEntered.equals(passRequired)) {
                 user = User.builder().username(userEntered).password(passEntered).build();
-                //TODO Meterlo en la BBDD
-
                 req.getSession().setMaxInactiveInterval(Integer.parseInt(getServletContext().getInitParameter("sessionTimeout")));
                 req.getSession().setAttribute("userSession", user);
 
-                resp.sendRedirect("/WiseUp/login/sign-up-done.jsp");
+                resp.sendRedirect("/WiseUp/login/login-done.jsp");
             } else {
-                resp.sendRedirect("/WiseUp/login/login.jsp");
+                resp.sendRedirect("/WiseUp/login/login.jsp"); //Mandar con aviso de que no es correcto
             }
         }
     }

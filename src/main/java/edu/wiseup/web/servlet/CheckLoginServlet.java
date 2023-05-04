@@ -1,4 +1,6 @@
-package edu.wiseup;
+package edu.wiseup.web.servlet;
+
+import edu.wiseup.web.servlet.dto.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

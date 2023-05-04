@@ -1,4 +1,4 @@
-package edu.wiseup;
+package edu.wiseup.web.servlet.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
