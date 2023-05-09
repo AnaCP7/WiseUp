@@ -8,10 +8,10 @@ import java.util.List;
 
 public class UserManager {
     public List<UserDAO> findAll(Connection con) {
-        try (Statement stm=con.createStatement()) {
-            ResultSet result=stm.executeQuery("SELECT * FROM user");
+        try (Statement stm = con.createStatement()) {
+            ResultSet result = stm.executeQuery("SELECT * FROM user");
 
-            result.beforeFirst();
+            //result.beforeFirst();
 
             List<UserDAO> users = new ArrayList<>();
 
@@ -32,8 +32,8 @@ public class UserManager {
         try (PreparedStatement stm = con.prepareStatement("SELECT * FROM user WHERE id = ?")) {
             stm.setInt(1, id);
 
-            ResultSet result=stm.executeQuery();
-            result.beforeFirst();
+            ResultSet result = stm.executeQuery();
+            //result.beforeFirst();
 
             UserDAO user = null;
 
@@ -52,16 +52,12 @@ public class UserManager {
     public UserDAO findByUsername(Connection con, String username) {
         try (PreparedStatement stm = con.prepareStatement("SELECT * FROM user WHERE username = ?")) {
             stm.setString(1, username);
-
-            ResultSet result=stm.executeQuery();
-            result.beforeFirst();
+            ResultSet result = stm.executeQuery();
 
             UserDAO user = null;
-
             while (result.next()) {
                 user = new UserDAO(result);
             }
-
             return user;
         }
         catch (SQLException e) {
@@ -75,7 +71,7 @@ public class UserManager {
             stm.setString(1, username);
             stm.setString(2, password);
 
-            stm.executeQuery();
+            stm.execute();
         }
         catch (SQLException e) {
             e.printStackTrace();
