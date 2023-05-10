@@ -11,8 +11,6 @@ public class Question {
     String question;
     String image;
     String answer;
-    String type;
-    String category;
 
     public Question() {
 
@@ -24,8 +22,6 @@ public class Question {
             this.question = result.getString("question");
             this.image = result.getString("image");
             this.answer = result.getString("answer");
-            this.type = result.getString("type");
-            this.category = result.getString("category");
         } catch (SQLException e) {
             e.printStackTrace();
         }

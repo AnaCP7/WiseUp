@@ -62,4 +62,12 @@ public class QuestionManager {
             return null;
         }
     }
+
+    public ArrayList<Question> findQuestionsById(Connection con, ArrayList<Integer> ids) {
+        ArrayList<Question> questions = new ArrayList<>();
+        for (int id : ids) {
+            questions.add(findById(con, id));
+        }
+        return questions;
+    }
 }
