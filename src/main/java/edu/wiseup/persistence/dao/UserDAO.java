@@ -7,9 +7,9 @@ import java.sql.SQLException;
 
 @Data
 public class UserDAO {
-    int id;
-    String username;
-    String password;
+    private int id;
+    private String username;
+    private String password;
 
     public UserDAO() {
 
