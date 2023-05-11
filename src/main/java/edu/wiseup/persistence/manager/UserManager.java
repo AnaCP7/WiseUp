@@ -1,10 +1,13 @@
 package edu.wiseup.persistence.manager;
 
+import edu.wiseup.persistence.dao.Score;
 import edu.wiseup.persistence.dao.UserDAO;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class UserManager {
     public List<UserDAO> findAll(Connection con) {
@@ -26,6 +29,36 @@ public class UserManager {
             return null;
         }
 
+    }
+
+    public List<UserDAO> findAllByIds(Connection con, Set<Integer> ids) {
+        String sql = String.format(
+                "SELECT * "
+                + "FROM score a, user b "
+                + "WHERE a.id_user = b.id "
+                + "AND a.id IN (%s)",
+                ids.stream().map(data -> "\"" + data + "\"").collect(Collectors.joining(", ")));
+
+        try (Statement stmt = con.createStatement()) {
+            ResultSet result = stmt.executeQuery(sql);
+
+            //result.beforeFirst();
+
+            List<UserDAO> users = new ArrayList<>();
+
+            while (result.next()) {
+                Score score = new Score(result);
+                UserDAO user = new UserDAO(result);
+                score.setUser(user);
+                users.add(user);
+            }
+
+            return users;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
     public UserDAO findById(Connection con, int id) {
