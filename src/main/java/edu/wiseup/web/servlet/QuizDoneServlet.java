@@ -27,8 +27,8 @@ public class QuizDoneServlet extends HttpServlet {
         for (int i = 0; i < 5; i++) {
             question = questions.get(i);
             correctAnswer = question.getAnswer() + "";
-            answerEntered = req.getParameter("question" + (i+1)).toLowerCase();
-            if (answerEntered.endsWith(correctAnswer)) {
+            answerEntered = req.getParameter("question-" + (i+1));
+            if (answerEntered != null && answerEntered.endsWith(correctAnswer)) {
                 score++;
             }
         }

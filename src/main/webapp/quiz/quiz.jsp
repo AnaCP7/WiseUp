@@ -14,10 +14,10 @@ for (int i = 0; i < 5; i++) {
     %>
     Question <%=i+1%>/5: <br>
     <%=question.getQuestion()%> <br>
-    <%=question.getOptionA()%> <input type="radio" name="question<%=i+1%>" value="optionA"/> <br>
-    <%=question.getOptionB()%> <input type="radio" name="question<%=i+1%>" value="optionB"/> <br>
-    <%=question.getOptionC()%> <input type="radio" name="question<%=i+1%>" value="optionC"/> <br>
-    <%=question.getOptionD()%> <input type="radio" name="question<%=i+1%>" value="optionD"/> <br>
+    <%=question.getOptionA()%> <input type="radio" name="question-<%=i+1%>" value="option-a"/> <br>
+    <%=question.getOptionB()%> <input type="radio" name="question-<%=i+1%>" value="option-b"/> <br>
+    <%=question.getOptionC()%> <input type="radio" name="question-<%=i+1%>" value="option-c"/> <br>
+    <%=question.getOptionD()%> <input type="radio" name="question-<%=i+1%>" value="option-d"/> <br>
     <br>
 <% } %>
 <!-- session.setAttribute("questions", questions); -->

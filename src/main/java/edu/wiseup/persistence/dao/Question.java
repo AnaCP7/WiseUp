@@ -15,6 +15,7 @@ public class Question {
     private String optionC;
     private String optionD;
     private char answer;
+    private String category;
 
     public Question() {
 
@@ -25,11 +26,12 @@ public class Question {
             this.id = result.getInt("id");
             this.question = result.getString("question");
             this.image = result.getString("image");
-            this.optionA = result.getString("optionA");
-            this.optionB = result.getString("optionB");
-            this.optionC = result.getString("optionC");
-            this.optionD = result.getString("optionD");
+            this.optionA = result.getString("option_a");
+            this.optionB = result.getString("option_b");
+            this.optionC = result.getString("option_c");
+            this.optionD = result.getString("option_d");
             this.answer = result.getString("answer").charAt(0);
+            this.category = result.getString("category");
         } catch (SQLException e) {
             e.printStackTrace();
         }

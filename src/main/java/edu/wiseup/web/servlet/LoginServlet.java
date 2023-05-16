@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
                         resp.sendRedirect("/WiseUp/login/login.jsp"); //Mandar con aviso de que no es correcto
                     } else {
                         user = User.builder().username(userEntered).password(passEntered).build();
-                        req.getSession().setMaxInactiveInterval(Integer.parseInt(getServletContext().getInitParameter("sessionTimeout")));
+                        //req.getSession().setMaxInactiveInterval(Integer.parseInt(getServletContext().getInitParameter("sessionTimeout")));
                         req.getSession().setAttribute("userSession", user);
 
                         resp.sendRedirect("/WiseUp/login/login-done.jsp");
