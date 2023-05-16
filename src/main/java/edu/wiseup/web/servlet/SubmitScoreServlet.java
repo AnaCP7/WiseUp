@@ -13,8 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 @WebServlet(urlPatterns = {"/submit-score-servlet"})
 public class SubmitScoreServlet extends HttpServlet {
@@ -33,7 +32,7 @@ public class SubmitScoreServlet extends HttpServlet {
             int score = Integer.parseInt(req.getParameter("score"));
             User user = (User) req.getSession().getAttribute("userSession");
             int idUser = uman.findByUsername(con, user.getUsername()).getId();
-            sman.addScore(con, idUser, score, LocalDateTime.now(ZoneId.of("ECT")));
+            sman.addScore(con, idUser, score, ZonedDateTime.now().toInstant());
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }

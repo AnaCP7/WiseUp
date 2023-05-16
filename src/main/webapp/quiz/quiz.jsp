@@ -3,7 +3,22 @@
 <%@ page import="java.util.ArrayList" %>
 
 <html>
+<head>
+    <script>
+        var n = 0;
+        var l = document.getElementById("number");
+        window.setInterval(function(){
+          l.innerHTML = n;
+          n++;
+        },1000);
+    </script>
+</head>
+
 <body>
+Contador:
+<div id="number" style="font-size:50px; color:#434343;"></div>
+Como es un JSP no puede tener elementos que se actualicen :(
+<br>
 
 <form action="/WiseUp/quiz-done-servlet" method="POST">
 <%

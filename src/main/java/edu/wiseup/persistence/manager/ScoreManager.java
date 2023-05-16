@@ -4,7 +4,7 @@ import edu.wiseup.persistence.dao.Score;
 import edu.wiseup.persistence.dao.UserDAO;
 
 import java.sql.*;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -74,12 +74,12 @@ public class ScoreManager {
         });
     }
 
-    public void addScore(Connection con, int idUser, int score, LocalDateTime date) {
+    public void addScore(Connection con, int idUser, int score, Instant date) {
         String sql = "INSERT INTO score (id_user, score, date) VALUES (?, ?, ?);";
         try (PreparedStatement stm = con.prepareStatement(sql)) {
             stm.setInt(1, idUser);
             stm.setInt(2, score);
-            stm.setTimestamp(3, Timestamp.valueOf(date));
+            stm.setTimestamp(3, Timestamp.from(date));
 
             stm.execute();
         }
