@@ -4,7 +4,7 @@ import edu.wiseup.persistence.dao.Score;
 import edu.wiseup.persistence.dao.UserDAO;
 
 import java.sql.*;
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -74,17 +74,43 @@ public class ScoreManager {
         });
     }
 
-    public void addScore(Connection con, int idUser, int score, LocalDateTime date) {
+    public void addScore(Connection con, int idUser, int score, Instant date) {
         String sql = "INSERT INTO score (id_user, score, date) VALUES (?, ?, ?);";
         try (PreparedStatement stm = con.prepareStatement(sql)) {
             stm.setInt(1, idUser);
             stm.setInt(2, score);
-            stm.setTimestamp(3, Timestamp.valueOf(date));
+            stm.setTimestamp(3, Timestamp.from(date));
 
             stm.execute();
         }
         catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    public List<Score> findAllSorted(Connection con) {
+        String sql = "SELECT * FROM score ORDER BY score DESC, date ASC";
+
+        try (Statement stm=con.createStatement()) {
+            ResultSet result = stm.executeQuery(sql);
+
+            //result.beforeFirst();
+
+            List<Score> scores = new ArrayList<>();
+            Map<Integer, Integer> users = new HashMap<>();
+
+            while (result.next()) {
+                scores.add(new Score(result));
+                users.put(result.getInt("id"), result.getInt("id_user"));
+            }
+
+            fillUsers(con, users, scores);
+
+            return scores;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

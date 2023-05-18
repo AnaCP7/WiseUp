@@ -2,8 +2,6 @@ package edu.wiseup.web.servlet;
 
 import edu.wiseup.persistence.connector.MySQLConnector;
 import edu.wiseup.persistence.manager.ScoreManager;
-import edu.wiseup.persistence.manager.UserManager;
-import edu.wiseup.web.servlet.dto.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,10 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.time.Instant;
 
-@WebServlet(urlPatterns = {"/submit-score-servlet"})
-public class SubmitScoreServlet extends HttpServlet {
+@WebServlet(urlPatterns = {"/ranking-servlet"})
+public class RankingServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
@@ -27,17 +24,15 @@ public class SubmitScoreServlet extends HttpServlet {
 
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             ScoreManager sman = new ScoreManager();
-            UserManager uman = new UserManager();
 
-            int score = Integer.parseInt(req.getParameter("score"));
-            User user = (User) req.getSession().getAttribute("userSession");
-            int idUser = uman.findByUsername(con, user.getUsername()).getId();
-            sman.addScore(con, idUser, score, Instant.now());
+            req.getSession().setAttribute("scores", sman.findAllSorted(con));
 
-        } catch (SQLException | ClassNotFoundException e) {
+            resp.sendRedirect("/WiseUp/quiz/ranking.jsp");
+        }
+        catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
 
-        resp.sendRedirect("/WiseUp/ranking-servlet");
     }
+
 }

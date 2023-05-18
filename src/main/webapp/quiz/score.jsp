@@ -52,27 +52,37 @@
 <div class="score-container">
   <div class="score-title">Score: <%=session.getAttribute("score")%></div>
   <div class="score-message">
+    <b>Correct answers: <%=session.getAttribute("correctAnswers")%>/5</b> <br>
+    <b>Time taken: <%=session.getAttribute("timeTaken")%>s</b>
+  </div>
+  <div class="score-message">
     <%
     int score = (int) session.getAttribute("score");
-    String message;
+    String message = "";
     if (score == 0) {
       message = "Need practice!";
-    } else if (score == 1) {
+    } else if (score <= 100) {
       message = "You can do better!";
-    } else if (score == 2) {
+    } else if (score <= 200) {
       message = "Not bad!";
-    } else if (score == 3) {
+    } else if (score <= 300) {
       message = "Average!";
-    } else if (score == 4) {
+    } else if (score <= 400) {
       message = "Great job!";
-    } else {
+    } else if (score < 500) {
       message = "Wow, can't be better!";
+    } else if (score == 500) {
+      message = "Just perfect.";
     }
     out.println(message);
     %>
   </div>
   <form action="/WiseUp/submit-score-servlet" method="POST">
     <input type="hidden" name="score" value="<%=session.getAttribute("score")%>"/>
+    <%
+    session.removeAttribute("score");
+    session.removeAttribute("questions");
+    %>
     <button class="submit-button" type="submit">Submit score to ranking</button>
   </form>
 </div>

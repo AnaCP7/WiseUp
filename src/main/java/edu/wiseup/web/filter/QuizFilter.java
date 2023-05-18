@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebFilter(urlPatterns={"/quiz/quiz.jsp"}, dispatcherTypes={DispatcherType.REQUEST, DispatcherType.FORWARD})
-public class QuizFilter implements  Filter {
+@WebFilter(urlPatterns={"/quiz/quiz.jsp", "/quiz/score.jsp"}, dispatcherTypes={DispatcherType.REQUEST, DispatcherType.FORWARD})
+public class QuizFilter implements Filter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -26,7 +26,6 @@ public class QuizFilter implements  Filter {
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
 
         ArrayList<Question> questions = (ArrayList<Question>) req.getSession().getAttribute("questions");
-        System.out.println(questions);
 
         if(questions == null){
             resp.sendRedirect("/WiseUp/quiz/quiz-start.jsp");
