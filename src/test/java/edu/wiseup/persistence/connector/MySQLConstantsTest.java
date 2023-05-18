@@ -23,6 +23,6 @@ public class MySQLConstantsTest {
         assertEquals("jdbc.mysql.driver", driver);
     }
 
-    // Add more test methods for the other constants...
+
 
 }
