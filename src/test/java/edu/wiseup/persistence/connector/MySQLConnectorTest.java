@@ -1,81 +1,45 @@
-/*package edu.wiseup.persistence.connector;
+package edu.wiseup.persistence.connector;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.util.Properties;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-class MySQLConnectorTest {
+import edu.wiseup.persistence.connector.MySQLConnector;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
-    @Mock
-    private Properties mockProperties;
+import java.sql.Connection;
+import java.sql.SQLException;
 
-    @Mock
-    private Connection mockConnection;
-
-    private MySQLConnector mySQLConnector;
-
-    @BeforeEach
-    void setUp() throws IOException {
-        MockitoAnnotations.openMocks(this);
-
-        mySQLConnector = spy(new MySQLConnector());
-        doReturn(mockProperties).when(mySQLConnector).getProp();
-
-        // Cargar propiedades de configuración desde un archivo de prueba
-        InputStream input = getClass().getClassLoader().getResourceAsStream("test-config.properties");
-        mockProperties.load(input);
-    }
+public class MySQLConnectorTest {
 
     @Test
-    void testGetMySQLConnection() throws SQLException, ClassNotFoundException {
-        // Configurar el comportamiento del mock
-        when(mockProperties.getProperty(anyString())).thenReturn("mock-value");
-        when(mockConnection.getCatalog()).thenReturn("mock-catalog");
+    public void testGetMySQLConnection() throws ClassNotFoundException, SQLException {
+        // Crea el mock
+        MySQLConnector mySQLConnector = mock(MySQLConnector.class);
 
-        // Simular el registro del controlador para evitar la excepción ClassNotFoundException
-        doNothing().when(mySQLConnector).registerDriver();
 
-        // Simular la obtención de la conexión
-        doReturn(mockConnection).when(mySQLConnector).getConnection();
+        when(mySQLConnector.getMySQLConnection()).thenReturn(mock(Connection.class));
 
-        // Ejecutar el método que queremos probar
-        Connection actualConnection = mySQLConnector.getMySQLConnection();
+        // Realiza la llamada a getConnection
+        Connection connection = mySQLConnector.getMySQLConnection();
 
-        // Verificar que se hayan llamado los métodos necesarios
-        verify(mySQLConnector).registerDriver();
-        verify(mySQLConnector).getConnection();
+        // Realiza más pruebas utilizando la conexión
+        Assertions.assertNotNull(connection);
+        // Comprueba que la conexión es nula
+        Assertions.assertNotNull(connection);
+        // Comprueba que la conexión esté abierta
+        Assertions.assertTrue(connection.isValid(1));
 
-        // Verificar el resultado
-        assertEquals("mock-catalog", actualConnection.getCatalog());
+        // Comprueba que la conexión esté en el esquema correcto
+        Assertions.assertEquals("nombre_esquema", connection.getSchema());
 
-        // Verificar que se haya cerrado la conexión
-        verify(mockConnection).close();
+        // Close connection y verificarlo
+        connection.close();
+        Assertions.assertTrue(connection.isClosed());
+
+
+        // Comprueba que se haya llamado al método getMySQLConnection
+        verify(mySQLConnector).getMySQLConnection();
     }
 
-    @Test
-    void testGetURL() {
-        when(mockProperties.getProperty(anyString())).thenReturn("mock-value");
 
-        String actualURL = mySQLConnector.getURL();
-
-        // Actualizar con la URL esperada
-        String expectedURL = "expected-url";
-
-        assertEquals(expectedURL, actualURL);
-
-        // Verificar que se hayan llamado los métodos getProperty correctamente
-        verify(mockProperties, times(13)).getProperty(anyString());
-    }
 }
-*/
