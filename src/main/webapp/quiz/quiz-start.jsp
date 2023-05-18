@@ -17,6 +17,7 @@
             background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            text-align: center; /* Se agrega la alineación centrada */
         }
 
         h2 {
@@ -51,13 +52,13 @@
     <div class="container">
         <h2>Instructions:</h2>
         <ul>
-            <li>Have fun</li>
-            <li>The faster you finish, the higher your score</li>
-            <li>You can see your score at the end of the quiz</li>
+            <li>Have fun!</li>
+            <li>The faster you finish, the higher your score is.</li>
+            <li>You can see your score at the end of the quiz.</li>
         </ul>
         <form action="/WiseUp/quiz-servlet" method="POST">
             <button class="button" type="submit">Start quiz</button>
         </form>
     </div>
 </body>
-</
+</html>
