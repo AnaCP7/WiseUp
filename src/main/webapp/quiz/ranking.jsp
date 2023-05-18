@@ -5,52 +5,33 @@
 
 <html>
     <body>
-        <h2>No está terminado!!!</h2>
-        <form action="/WiseUp/ranking-servlet" method="GET">
-                <p>ID Score: </p> <input type="text" name="id"/></br>
-                <button type="submit">Buscar</button>
-                <button type="reset">Cancelar</button>
-        </form>
         <%
-        Score scoreSelected = (Score) session.getAttribute("score");
-        List<Score> scores = (List<Score>)session.getAttribute("scores");
-        session.removeAttribute("score");
+        List<Score> scores = (List<Score>) session.getAttribute("scores");
         session.removeAttribute("scores");
-        %>
-        <%
-        if(scoreSelected != null){%>
-            <h2>Score</h2>
+        if (scores == null) { %>
+            <form action="/WiseUp/ranking-servlet" method="POST">
+                <button type="submit">Mostrar ranking</button>
+            </form>
+        <% }
+        else { %>
+            <h2>WiseUp Ranking</h2>
             <table>
-            <tr>
-                <th>id</th>
-                <th>user</th>
-                <th>score</th>
-                <th>date</th>
-            </tr>
-            <tr>
-                <td><%=scoreSelected.getId()%></td>
-                <td><%=scoreSelected.getUser()%></td>
-                <td><%=scoreSelected.getScore()%></td>
-                <td><%=scoreSelected.getDate()%></td>
-            </tr>
-            </table>
-
-            <h2>Ranking</h2>
-            <table>
-            <tr>
-                <th>id</th>
-                <th>user</th>
-                <th>score</th>
-                <th>date</th>
-            </tr>
-            <%for(Score score : scores){%>
                 <tr>
-                    <td><%=score.getId()%></td>
-                    <td><%=score.getUser()%></td>
-                    <td><%=score.getScore()%></td>
-                    <td><%=score.getDate()%></td>
+                    <th>Ranking</th>
+                    <th>Score</th>
+                    <th>User</th>
+                    <th>Date</th>
                 </tr>
-            <%}%>
+                <%
+                long n = 1;
+                for(Score score : scores){%>
+                    <tr>
+                        <td><%=n++%></td>
+                        <td><%=score.getScore()%></td>
+                        <td><%=score.getUser().getUsername()%></td>
+                        <td><%=score.getDate().toString().substring(0,10)%></td>
+                    </tr>
+                <%}%>
             </table>
         <%}%>
     </body>

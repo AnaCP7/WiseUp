@@ -21,7 +21,9 @@ public class Score {
         try {
             this.id = result.getInt("id");
             this.score = result.getInt("score");
-            this.date = Instant.parse(result.getString("date"));
+            String strDate = result.getString("date");
+            this.date = Instant.parse
+                    (strDate.substring(0,10) + "T" + strDate.substring(11) + ".00Z");
         } catch (SQLException e) {
             e.printStackTrace();
         }

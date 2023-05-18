@@ -87,4 +87,30 @@ public class ScoreManager {
             e.printStackTrace();
         }
     }
+
+    public List<Score> findAllSorted(Connection con) {
+        String sql = "SELECT * FROM score ORDER BY score DESC, date ASC";
+
+        try (Statement stm=con.createStatement()) {
+            ResultSet result = stm.executeQuery(sql);
+
+            //result.beforeFirst();
+
+            List<Score> scores = new ArrayList<>();
+            Map<Integer, Integer> users = new HashMap<>();
+
+            while (result.next()) {
+                scores.add(new Score(result));
+                users.put(result.getInt("id"), result.getInt("id_user"));
+            }
+
+            fillUsers(con, users, scores);
+
+            return scores;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }

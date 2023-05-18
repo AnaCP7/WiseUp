@@ -61,13 +61,13 @@
     String message = "";
     if (score == 0) {
       message = "Need practice!";
-    } else if (score < 100) {
+    } else if (score <= 100) {
       message = "You can do better!";
-    } else if (score < 200) {
+    } else if (score <= 200) {
       message = "Not bad!";
-    } else if (score < 300) {
+    } else if (score <= 300) {
       message = "Average!";
-    } else if (score < 400) {
+    } else if (score <= 400) {
       message = "Great job!";
     } else if (score < 500) {
       message = "Wow, can't be better!";
