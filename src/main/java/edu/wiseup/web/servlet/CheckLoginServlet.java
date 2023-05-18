@@ -24,6 +24,6 @@ public class CheckLoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.sendRedirect("/WiseUp/login/login.jsp");
+        resp.sendRedirect("/WiseUp/login/login-form/logIn.html");
     }
 }

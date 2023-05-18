@@ -32,10 +32,14 @@ public class CreateAccountServlet extends HttpServlet {
                 man.addUser(con, userEntered, passEntered);
                 resp.sendRedirect("/WiseUp/login/sign-up-done.jsp");
             } else {
-                resp.sendRedirect("/WiseUp/login/create-account.jsp"); //Mandar con aviso de que no es correcto
+                resp.sendRedirect("WiseUp/login/login-form/createAccount.html"); //Mandar con aviso de que no es correcto
+
+             ///WiseUp/login/create-account.jsp
             }
         } catch (ClassNotFoundException | SQLException e) {
-            resp.sendRedirect("/WiseUp/login/create-account.jsp"); //Mandar con aviso de que no es correcto
+            resp.sendRedirect("WiseUp/login/login-form/createAccount.html"); //Mandar con aviso de que no es correcto
+
+            //Ruta anterior:///WiseUp/login/create-account.jsp
         }
     }
 

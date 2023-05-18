@@ -35,11 +35,11 @@ public class LoginServlet extends HttpServlet {
                 UserManager man = new UserManager();
 
                 if (man.findByUsername(con, userEntered) == null) {
-                    resp.sendRedirect("/WiseUp/login/login.jsp"); //Mandar con aviso de que no es correcto
+                    resp.sendRedirect("/WiseUp/login/login-done.jsp"); //Mandar con aviso de que no es correcto
                 } else {
                     passRequired = man.findByUsername(con, userEntered).getPassword();
                     if (!passEntered.equals(passRequired)) {
-                        resp.sendRedirect("/WiseUp/login/login.jsp"); //Mandar con aviso de que no es correcto
+                        resp.sendRedirect("/WiseUp/login/login-form/logIn.html"); //Mandar con aviso de que no es correcto
                     } else {
                         user = User.builder().username(userEntered).password(passEntered).build();
                         //req.getSession().setMaxInactiveInterval(Integer.parseInt(getServletContext().getInitParameter("sessionTimeout")));
@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
                     }
                 }
             } catch (ClassNotFoundException | SQLException e) {
-                resp.sendRedirect("/WiseUp/login/login.jsp"); //Mandar con aviso de que no es correcto
+                resp.sendRedirect("/WiseUp/login/login-form/logIn.html"); //Mandar con aviso de que no es correcto
             }
         }
     }
