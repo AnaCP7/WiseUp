@@ -1,6 +1,7 @@
 <%@ page pageEncoding="UTF-8" %>
 <%@ page import="edu.wiseup.persistence.dao.Question" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.time.Instant" %>
 
 <html>
 <head>
@@ -60,7 +61,7 @@
   </style>
 </head>
 <body>
-
+<% Instant start = Instant.now(); %>
 <form action="/WiseUp/quiz-done-servlet" method="POST">
 <%
 ArrayList<Question> questions = (ArrayList<Question>) session.getAttribute("questions");
@@ -81,6 +82,7 @@ for (int i = 0; i < 5; i++) {
       </div>
     </div>
 <% } %>
+    <input type="hidden" name="start" value="<%=start%>"/>
 <button class="done-button" type="submit">Done!</button>
 </form>
 </body>
