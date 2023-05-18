@@ -13,6 +13,32 @@
     <noscript>
         <link rel="stylesheet" href="assets/css/noscript.css"/>
     </noscript>
+    <link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet'>
+    <style>
+        h2 {
+            letter-spacing: -0.01rem;
+        }
+        #logo {
+            border-left: 1px solid rgba(0, 0, 0, 0.075);
+            background-color: #FCEDF2;
+            font-family: 'Inconsolata';
+            font-size: 6rem;
+            position: relative;
+        }
+        #logo p {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: 0;
+            padding: 0;
+            line-height: 1;
+            font-weight: 700;
+            transform: translate(-50%, -50%);
+        }
+        #logo span {
+            color: #DD356E;
+        }
+    </style>
 </head>
 <body class="is-preload">
 
@@ -36,8 +62,8 @@
                 </li>
             </ul>
         </div>
-        <div class="image">
-            <img src="images/quizCultureRed.jpg" alt=""/>
+        <div class="image" id="logo">
+            <p>WISE<br>UP<span>.</span></p>
         </div>
     </section>
 
@@ -49,7 +75,7 @@
             <p>Our women's section is a way to get closer to all those unknown or forgotten women of history, with great
                 contributions and that, without them, we could not talk about culture.</p>
             <ul class="actions stacked">
-                <li><a href="#" class="button">Learn More</a></li>
+                <li><a href="check-login-servlet" class="button">Learn More</a></li>
             </ul>
         </div>
         <div class="image">
@@ -64,11 +90,15 @@
             <p>Compete with friends or against yourself. With WiseUp you can check your results, competition history and
                 scores. You can see your improvements!</p>
             <ul class="actions stacked">
-                <li><a href="#" class="button">Learn More</a></li>
+                <li><a href="check-login-servlet" class="button">Learn More</a></li>
             </ul>
         </div>
-        <div class="image">
-            <img src="images/fourQuiz.jpg" alt=""/>
+        <div class="image" style="background-color: white; border: 1px solid rgba(0, 0, 0, 0.075);">
+            <img src="images/fourQuiz.jpg" alt=""
+                 style="max-height: 100%; width: auto;
+                     display: inline-block;
+                     position: absolute; margin: auto;
+                     top: 0; left: 0; right: 0; bottom: 0;"/>
         </div>
     </section>
 
@@ -99,14 +129,14 @@
                 history. We noticed a significant lack of representation and awareness about women painters, artists,
                 sculptors, and more during our own educational experiences. Therefore, we wanted to differentiate
                 ourselves from other applications by providing a balanced and inclusive platform that pays special
-                tribute to these remarkable women.
+                tribute to these remarkable women.</p>
 
-                The idea for this project originated from our final internship in the southern region of Spain,
+            <p>The idea for this project originated from our final internship in the southern region of Spain,
                 specifically in Málaga. As two passionate individuals eager to learn about the achievements of women, we
                 embarked on this journey. Our goal is to create an educational and enjoyable experience that celebrates
-                women's accomplishments while fostering gender equality.
+                women's accomplishments while fostering gender equality.</p>
 
-                We believe that by shedding light on these often overlooked women, we can inspire and empower users of
+            <p>We believe that by shedding light on these often overlooked women, we can inspire and empower users of
                 all genders to appreciate their contributions and understand the importance of diversity and inclusivity
                 in history and art. Together, let's learn from the past and create a brighter future.</p>
         </div>
@@ -250,6 +280,7 @@
     -->
 
     <!-- Seven -->
+    <!--
     <section class="wrapper style1 align-center">
         <div class="inner medium">
             <h2>Get in touch</h2>
@@ -275,6 +306,7 @@
 
         </div>
     </section>
+    -->
 
     <!-- Footer -->
     <footer class="wrapper style1 align-center">
