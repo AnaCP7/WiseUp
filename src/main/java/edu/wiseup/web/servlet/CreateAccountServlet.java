@@ -30,13 +30,13 @@ public class CreateAccountServlet extends HttpServlet {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             UserManager man = new UserManager();
             if (isLegal(userEntered) && isLegal(passEntered) && passEntered.equals(passConfirmation)
-            && man.findByUsername(con, userEntered) == null) {
+                    && man.findByUsername(con, userEntered) == null) {
                 man.addUser(con, userEntered, passEntered);
                 resp.sendRedirect("/WiseUp/login/sign-up-done.jsp");
             } else {
                 resp.sendRedirect("/WiseUp/login/login-form/createAccount.html"); //Mandar con aviso de que no es correcto
 
-             ///WiseUp/login/create-account.jsp
+                ///WiseUp/login/create-account.jsp
             }
         } catch (ClassNotFoundException | SQLException e) {
             resp.sendRedirect("/WiseUp/login/login-form/createAccount.html"); //Mandar con aviso de que no es correcto
