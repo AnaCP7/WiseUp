@@ -8,7 +8,7 @@ import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class ScoreManager {
+public class ScoreManager implements Findable<Score> {
     public List<Score> findAll(Connection con) {
         try (Statement stm=con.createStatement()) {
             ResultSet result = stm.executeQuery("SELECT * FROM question");

@@ -15,6 +15,7 @@ public class UserDAO {
 
     }
 
+
     public UserDAO(ResultSet result) {
         try {
             this.id = result.getInt("id");

@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionManager {
+public class QuestionManager implements Findable<Question>{
     public List<Question> findAll(Connection con) {
         try (Statement stm=con.createStatement()) {
             ResultSet result = stm.executeQuery("SELECT * FROM question");

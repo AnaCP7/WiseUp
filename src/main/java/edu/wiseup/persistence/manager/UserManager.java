@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class UserManager {
+public class UserManager implements Findable<UserDAO>{
+    @Override
     public List<UserDAO> findAll(Connection con) {
         try (Statement stm = con.createStatement()) {
             ResultSet result = stm.executeQuery("SELECT * FROM user");
@@ -61,6 +62,7 @@ public class UserManager {
         }
     }
 
+    @Override
     public UserDAO findById(Connection con, int id) {
         try (PreparedStatement stm = con.prepareStatement("SELECT * FROM user WHERE id = ?")) {
             stm.setInt(1, id);
