@@ -11,7 +11,7 @@ public class UserDAO {
     private String username;
     private String password;
 
-    public UserDAO() {
+    public UserDAO(int id1, String userName1) {
 
     }
 
@@ -23,5 +23,9 @@ public class UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public long getUserName() {
+        return 0;
     }
 }

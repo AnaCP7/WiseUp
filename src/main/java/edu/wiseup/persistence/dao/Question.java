@@ -18,7 +18,11 @@ public class Question {
     private String category;
 
     public Question() {
+        this.id = id;
+        this.question = question;
+    }
 
+    public Question(int i, String s) {
     }
 
     public Question(ResultSet result) {
@@ -36,4 +40,6 @@ public class Question {
             e.printStackTrace();
         }
     }
+
+
 }

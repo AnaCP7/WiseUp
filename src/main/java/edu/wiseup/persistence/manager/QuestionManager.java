@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionManager implements Findable<Question>{
+
+
     @Override
     public List<Question> findAll(Connection con) {
         try (Statement stm=con.createStatement()) {

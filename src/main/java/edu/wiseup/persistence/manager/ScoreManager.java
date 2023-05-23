@@ -1,5 +1,6 @@
 package edu.wiseup.persistence.manager;
 
+
 import edu.wiseup.persistence.dao.Score;
 import edu.wiseup.persistence.dao.UserDAO;
 
