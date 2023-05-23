@@ -29,13 +29,13 @@ public class LoginServlet extends HttpServlet {
         } else {
             String userEntered = req.getParameter("user");
             String passEntered = req.getParameter("pass");
-            String passRequired = "";
+            String passRequired;
 
             try (Connection con = new MySQLConnector().getMySQLConnection()) {
                 UserManager man = new UserManager();
 
                 if (man.findByUsername(con, userEntered) == null) {
-                    resp.sendRedirect("/WiseUp/login/login-done.jsp"); //Mandar con aviso de que no es correcto
+                    resp.sendRedirect("/WiseUp/login/login-form/logIn.html"); //Mandar con aviso de que no es correcto
                 } else {
                     passRequired = man.findByUsername(con, userEntered).getPassword();
                     if (!passEntered.equals(passRequired)) {

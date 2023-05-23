@@ -47,8 +47,8 @@
     }
   </style>
 </head>
-<body>
 
+<body>
 <div class="score-container">
   <div class="score-title">Score: <%=session.getAttribute("score")%></div>
   <div class="score-message">
@@ -88,3 +88,4 @@
 </div>
 
 </body>
+</html>

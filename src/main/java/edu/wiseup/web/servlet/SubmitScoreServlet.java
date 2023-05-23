@@ -35,7 +35,7 @@ public class SubmitScoreServlet extends HttpServlet {
             sman.addScore(con, idUser, score, Instant.now());
 
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            resp.sendRedirect("/WiseUp/ranking-servlet");
         }
 
         resp.sendRedirect("/WiseUp/ranking-servlet");

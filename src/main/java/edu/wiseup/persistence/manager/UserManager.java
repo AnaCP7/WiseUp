@@ -85,8 +85,8 @@ public class UserManager implements Findable<UserDAO>{
     }
 
     public UserDAO findByUsername(Connection con, String username) {
-        try (PreparedStatement stm = con.prepareStatement("SELECT * FROM user WHERE username = ?")) {
-            stm.setString(1, username);
+        String sql = "SELECT * FROM user WHERE username LIKE '" + username + "'";
+        try (PreparedStatement stm = con.prepareStatement(sql)) {
             ResultSet result = stm.executeQuery();
 
             UserDAO user = null;

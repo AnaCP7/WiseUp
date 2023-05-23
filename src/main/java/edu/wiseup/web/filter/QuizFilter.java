@@ -12,7 +12,6 @@ import java.util.ArrayList;
 @WebFilter(urlPatterns={"/quiz/quiz.jsp", "/quiz/score.jsp"}, dispatcherTypes={DispatcherType.REQUEST, DispatcherType.FORWARD})
 public class QuizFilter implements Filter {
 
-    /// Quitar si no se va a usar.
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
     }

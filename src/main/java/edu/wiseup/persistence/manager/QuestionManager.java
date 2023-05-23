@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuestionManager implements Findable<Question>{
+    @Override
     public List<Question> findAll(Connection con) {
         try (Statement stm=con.createStatement()) {
             ResultSet result = stm.executeQuery("SELECT * FROM question");
@@ -42,6 +43,7 @@ public class QuestionManager implements Findable<Question>{
         }
     }
 
+    @Override
     public Question findById(Connection con, int id) {
         try (PreparedStatement stm = con.prepareStatement("SELECT * FROM question WHERE id = ?")) {
             stm.setInt(1, id);

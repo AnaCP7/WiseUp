@@ -6,24 +6,24 @@ import edu.wiseup.persistence.dao.UserDAO;
 import java.sql.*;
 import java.time.Instant;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class ScoreManager implements Findable<Score> {
+    @Override
     public List<Score> findAll(Connection con) {
         try (Statement stm=con.createStatement()) {
             ResultSet result = stm.executeQuery("SELECT * FROM question");
 
             //result.beforeFirst();
-
             List<Score> scores = new ArrayList<>();
-            Map<Integer, Integer> users = new HashMap<>();
+
+            UserManager uman = new UserManager();
+            Score score = null;
 
             while (result.next()) {
-                scores.add(new Score(result));
-                users.put(result.getInt("id"), result.getInt("id_user"));
+                score = new Score(result);
+                score.setUser(uman.findById(con, result.getInt("id_user")));
+                scores.add(score);
             }
-
-            fillUsers(con, users, scores);
 
             return scores;
         }
@@ -33,6 +33,7 @@ public class ScoreManager implements Findable<Score> {
         }
     }
 
+    @Override
     public Score findById(Connection con, int id) {
         String sql =
                 "SELECT * "
@@ -62,18 +63,6 @@ public class ScoreManager implements Findable<Score> {
         }
     }
 
-    private void fillUsers(Connection con, Map<Integer, Integer> users, List<Score> scores) {
-        Set<Integer> userIDs = new HashSet<>(users.values());
-        Map<Integer, UserDAO> usersMap = new UserManager().findAllByIds(con, userIDs).stream()
-                .collect(Collectors.toMap(UserDAO::getId, data -> data));
-
-        scores.forEach(score -> {
-            int userID = users.get(score.getId());
-            UserDAO foundUser = usersMap.get(userID);
-            score.setUser(foundUser);
-        });
-    }
-
     public void addScore(Connection con, int idUser, int score, Instant date) {
         String sql = "INSERT INTO score (id_user, score, date) VALUES (?, ?, ?);";
         try (PreparedStatement stm = con.prepareStatement(sql)) {
@@ -95,16 +84,16 @@ public class ScoreManager implements Findable<Score> {
             ResultSet result = stm.executeQuery(sql);
 
             //result.beforeFirst();
-
             List<Score> scores = new ArrayList<>();
-            Map<Integer, Integer> users = new HashMap<>();
+
+            UserManager uman = new UserManager();
+            Score score = null;
 
             while (result.next()) {
-                scores.add(new Score(result));
-                users.put(result.getInt("id"), result.getInt("id_user"));
+                score = new Score(result);
+                score.setUser(uman.findById(con, result.getInt("id_user")));
+                scores.add(score);
             }
-
-            fillUsers(con, users, scores);
 
             return scores;
         }

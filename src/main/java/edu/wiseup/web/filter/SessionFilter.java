@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebFilter(urlPatterns={"/quiz/*"}, dispatcherTypes={DispatcherType.REQUEST,DispatcherType.FORWARD})
+@WebFilter(urlPatterns={"/quiz/*", "/profile-page/*"}, dispatcherTypes={DispatcherType.REQUEST,DispatcherType.FORWARD})
 public class SessionFilter implements  Filter {
 
     @Override
@@ -33,7 +33,7 @@ public class SessionFilter implements  Filter {
         User user = (User)req.getSession().getAttribute("userSession");
 
         if(user == null){
-            resp.sendRedirect("/WiseUp/login/login-done.jsp");
+            resp.sendRedirect("/WiseUp/login/login-form/logIn.html");
         } else {
             filterChain.doFilter(servletRequest, servletResponse);
         }

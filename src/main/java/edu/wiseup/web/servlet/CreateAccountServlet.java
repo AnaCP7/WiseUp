@@ -15,11 +15,10 @@ import java.sql.SQLException;
 @WebServlet(urlPatterns = {"/create-account-servlet"})
 public class CreateAccountServlet extends HttpServlet {
 
-    // Si no se va a llamar desde ningún lado, se debería eliminar.
-   /* @Override
+    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
-    }*/
+    }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
