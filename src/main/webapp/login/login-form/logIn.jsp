@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<%@ page pageEncoding="UTF-8" %>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -27,7 +28,7 @@
             <div class="signin-content">
                 <div class="signin-image">
                     <figure><img src="images/loadingPic.jpg" alt="sing up image"></figure>
-                    <a href="createAccount.html" class="signup-image-link">Create an account</a>
+                    <a href="createAccount.jsp" class="signup-image-link">Create an account</a>
                 </div>
 
                 <div class="signin-form">
@@ -42,6 +43,11 @@
                             <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
                             <input type="password" name="pass" id="your_pass" placeholder="Password"/>
                         </div>
+
+                        <% if (session.getAttribute("error") != null) {%>
+                            <p style="color: red"><%=session.getAttribute("error")%></p>
+                            <% session.removeAttribute("error");
+                        }%>
 
                         <div class="form-group form-button">
                             <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>

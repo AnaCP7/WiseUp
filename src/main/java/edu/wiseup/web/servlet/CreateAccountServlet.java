@@ -28,19 +28,26 @@ public class CreateAccountServlet extends HttpServlet {
 
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             UserManager man = new UserManager();
-            if (isLegal(userEntered) && isLegal(passEntered) && passEntered.equals(passConfirmation)
-                    && man.findByUsername(con, userEntered) == null) {
+
+            if (!isLegal(userEntered) | !isLegal(passEntered)){
+                req.getSession().setAttribute("error", "Introduce usuario y contraseña permitidos.");
+            }
+            else if (!passEntered.equals(passConfirmation)) {
+                req.getSession().setAttribute("error", "Las contraseñas deben coincidir.");
+            }
+            else if (man.findByUsername(con, userEntered) != null) {
+                req.getSession().setAttribute("error", "El usuario ya se encuentra en el sistema.");
+            }
+            else {
                 man.addUser(con, userEntered, passEntered);
                 resp.sendRedirect("/WiseUp/login/sign-up-done.jsp");
-            } else {
-                resp.sendRedirect("/WiseUp/login/login-form/createAccount.html"); //Mandar con aviso de que no es correcto
-
-                ///WiseUp/login/create-account.jsp
             }
-        } catch (ClassNotFoundException | SQLException e) {
-            resp.sendRedirect("/WiseUp/login/login-form/createAccount.html"); //Mandar con aviso de que no es correcto
 
-            //Ruta anterior:///WiseUp/login/create-account.jsp
+            resp.sendRedirect("/WiseUp/login/login-form/createAccount.jsp");
+
+        } catch (ClassNotFoundException | SQLException e) {
+            req.getSession().setAttribute("error", "Se ha producido un error. Intente de nuevo.");
+            resp.sendRedirect("/WiseUp/login/login-form/createAccount.jsp");
         }
     }
 

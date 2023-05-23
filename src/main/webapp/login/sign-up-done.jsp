@@ -1,3 +1,5 @@
+<%@ page pageEncoding="UTF-8" %>
+
 <html>
 <head>
     <title>Correct loggin</title>

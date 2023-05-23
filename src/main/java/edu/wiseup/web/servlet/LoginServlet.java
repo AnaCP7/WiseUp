@@ -26,7 +26,8 @@ public class LoginServlet extends HttpServlet {
 
         if (user != null) {
             resp.sendRedirect("/WiseUp/login/login-done.jsp");
-        } else {
+        }
+        else {
             String userEntered = req.getParameter("user");
             String passEntered = req.getParameter("pass");
             String passRequired;
@@ -34,23 +35,37 @@ public class LoginServlet extends HttpServlet {
             try (Connection con = new MySQLConnector().getMySQLConnection()) {
                 UserManager man = new UserManager();
 
-                if (man.findByUsername(con, userEntered) == null) {
-                    resp.sendRedirect("/WiseUp/login/login-form/logIn.html"); //Mandar con aviso de que no es correcto
-                } else {
+                if (!isLegal(userEntered) | !isLegal(passEntered)) {
+                    req.getSession().setAttribute("error", "Introduce usuario y contraseña permitidos.");
+                }
+                else if (man.findByUsername(con, userEntered) == null) {
+                    req.getSession().setAttribute("error", "El usuario no se encuentra en el sistema.");
+                }
+                else {
                     passRequired = man.findByUsername(con, userEntered).getPassword();
                     if (!passEntered.equals(passRequired)) {
-                        resp.sendRedirect("/WiseUp/login/login-form/logIn.html"); //Mandar con aviso de que no es correcto
-                    } else {
+                        req.getSession().setAttribute("error", "La contraseña no es correcta.");
+                    }
+                    else {
                         user = User.builder().username(userEntered).password(passEntered).build();
                         //req.getSession().setMaxInactiveInterval(Integer.parseInt(getServletContext().getInitParameter("sessionTimeout")));
                         req.getSession().setAttribute("userSession", user);
-
                         resp.sendRedirect("/WiseUp/login/login-done.jsp");
                     }
                 }
+
+                resp.sendRedirect("/WiseUp/login/login-form/logIn.jsp");
+
             } catch (ClassNotFoundException | SQLException e) {
-                resp.sendRedirect("/WiseUp/login/login-form/logIn.html"); //Mandar con aviso de que no es correcto
+                req.getSession().setAttribute("error", "Se ha producido un error. Intente de nuevo.");
+                resp.sendRedirect("/WiseUp/login/login-form/logIn.jsp");
             }
         }
+    }
+
+    private boolean isLegal(String str) {
+        return !(str.contains("%") || str.contains("'") ||
+                str.contains("\"") || str.contains(";") ||
+                str.contains(" ") || str.equals(""));
     }
 }

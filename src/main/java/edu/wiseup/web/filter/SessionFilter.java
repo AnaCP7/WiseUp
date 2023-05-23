@@ -33,7 +33,7 @@ public class SessionFilter implements  Filter {
         User user = (User)req.getSession().getAttribute("userSession");
 
         if(user == null){
-            resp.sendRedirect("/WiseUp/login/login-form/logIn.html");
+            resp.sendRedirect("/WiseUp/login/login-form/logIn.jsp");
         } else {
             filterChain.doFilter(servletRequest, servletResponse);
         }

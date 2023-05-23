@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<%@ page pageEncoding="UTF-8" %>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -47,6 +48,11 @@
                             <input type="password" name="pass2" id="pass2" placeholder="Repeat your password"/>
                         </div>
 
+                        <% if (session.getAttribute("error") != null) {%>
+                            <p style="color: red"><%=session.getAttribute("error")%></p>
+                            <% session.removeAttribute("error");
+                        }%>
+
                         <div class="form-group form-button">
                             <input type="submit" name="signup" id="signup" class="form-submit" value="Register"/>
                         </div>
@@ -54,7 +60,7 @@
                 </div>
                 <div class="signup-image">
                     <figure><img src="images/loginImage.jpg" alt="sing up image"></figure>
-                    <a href="logIn.html" class="signup-image-link">I am already a member</a>
+                    <a href="logIn.jsp" class="signup-image-link">I am already a member</a>
                 </div>
             </div>
         </div>
