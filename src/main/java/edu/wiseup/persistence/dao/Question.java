@@ -18,12 +18,12 @@ public class Question {
     private String category;
 
     public Question() {
-        this.id = id;
-        this.question = question;
+
     }
 
     public Question(int i, String s) {
-    }
+
+    } //TODO BORRARSE AL CORREGIR LOS TESTS
 
     public Question(ResultSet result) {
         try {
@@ -40,6 +40,4 @@ public class Question {
             e.printStackTrace();
         }
     }
-
-
 }

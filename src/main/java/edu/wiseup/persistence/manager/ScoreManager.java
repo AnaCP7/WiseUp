@@ -1,6 +1,5 @@
 package edu.wiseup.persistence.manager;
 
-
 import edu.wiseup.persistence.dao.Score;
 import edu.wiseup.persistence.dao.UserDAO;
 
@@ -9,6 +8,7 @@ import java.time.Instant;
 import java.util.*;
 
 public class ScoreManager implements Findable<Score> {
+
     @Override
     public List<Score> findAll(Connection con) {
         try (Statement stm=con.createStatement()) {
@@ -18,7 +18,7 @@ public class ScoreManager implements Findable<Score> {
             List<Score> scores = new ArrayList<>();
 
             UserManager uman = new UserManager();
-            Score score = null;
+            Score score;
 
             while (result.next()) {
                 score = new Score(result);
@@ -88,7 +88,7 @@ public class ScoreManager implements Findable<Score> {
             List<Score> scores = new ArrayList<>();
 
             UserManager uman = new UserManager();
-            Score score = null;
+            Score score;
 
             while (result.next()) {
                 score = new Score(result);

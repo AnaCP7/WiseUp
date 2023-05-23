@@ -11,9 +11,13 @@ public class UserDAO {
     private String username;
     private String password;
 
-    public UserDAO(int id1, String userName1) {
+    public UserDAO() {
 
     }
+
+    public UserDAO(int id1, String userName1) {
+
+    } //TODO BORRARSE AL CORREGIR LOS TESTS
 
     public UserDAO(ResultSet result) {
         try {
@@ -23,9 +27,5 @@ public class UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    public long getUserName() {
-        return 0;
     }
 }

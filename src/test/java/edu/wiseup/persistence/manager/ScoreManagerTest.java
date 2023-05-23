@@ -19,9 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static java.util.Collections.*;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -95,7 +93,7 @@ public class ScoreManagerTest {
 
             assertEquals(expectedScore.getId(), actualScore.getId());
             assertEquals(expectedScore.getUser().getId(), actualScore.getUser().getId());
-            assertEquals(expectedScore.getUser().getUserName(), actualScore.getUser().getUserName());
+            assertEquals(expectedScore.getUser().getUsername(), actualScore.getUser().getUsername());
         }
 
 
@@ -133,7 +131,7 @@ public class ScoreManagerTest {
 
         assertEquals(expectedScore.getId(), actualScore.getId());
         assertEquals(expectedScore.getUser().getId(), actualScore.getUser().getId());
-        assertEquals(expectedScore.getUser().getUserName(), actualScore.getUser().getUserName());
+        assertEquals(expectedScore.getUser().getUsername(), actualScore.getUser().getUsername());
 
 
         verify(mockConnection).prepareStatement("SELECT * FROM score a, user b where a.id = ? and a.id_user = b.id");
@@ -203,7 +201,7 @@ public class ScoreManagerTest {
 
             assertEquals(expectedScore.getId(), actualScore.getId());
             assertEquals(expectedScore.getUser().getId(), actualScore.getUser().getId());
-            assertEquals(expectedScore.getUser().getUserName(), actualScore.getUser().getUserName());
+            assertEquals(expectedScore.getUser().getUsername(), actualScore.getUser().getUsername());
         }
 
 
