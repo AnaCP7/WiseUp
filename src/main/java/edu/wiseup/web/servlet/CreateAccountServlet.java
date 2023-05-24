@@ -12,14 +12,25 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * Servlet utilizado para crear una cuenta de usuario.
+ */
 @WebServlet(urlPatterns = {"/create-account-servlet"})
 public class CreateAccountServlet extends HttpServlet {
 
+    /**
+     * Método GET del servlet.
+     * Redirige al método doPost.
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
     }
 
+    /**
+     * Método POST del servlet.
+     * Crea una cuenta de usuario con los datos proporcionados por el formulario.
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String userEntered = req.getParameter("user");
@@ -29,8 +40,8 @@ public class CreateAccountServlet extends HttpServlet {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             UserManager man = new UserManager();
 
-            if (!isLegal(userEntered) | !isLegal(passEntered)){
-                req.getSession().setAttribute("error", "Introduce usuario y contraseña permitidos.");
+            if (!isLegal(userEntered) || !isLegal(passEntered)){
+                req.getSession().setAttribute("error", "Introduce un usuario y contraseña permitidos.");
             }
             else if (!passEntered.equals(passConfirmation)) {
                 req.getSession().setAttribute("error", "Las contraseñas deben coincidir.");
@@ -41,16 +52,21 @@ public class CreateAccountServlet extends HttpServlet {
             else {
                 man.addUser(con, userEntered, passEntered);
                 resp.sendRedirect("/WiseUp/login/sign-up-done.jsp");
+                return;
             }
 
             resp.sendRedirect("/WiseUp/login/login-form/createAccount.jsp");
 
         } catch (ClassNotFoundException | SQLException e) {
-            req.getSession().setAttribute("error", "Se ha producido un error. Intente de nuevo.");
+            req.getSession().setAttribute("error", "Se ha producido un error. Intente nuevamente.");
             resp.sendRedirect("/WiseUp/login/login-form/createAccount.jsp");
         }
     }
 
+    /**
+     * Método utilizado para verificar si una cadena es válida.
+     * Verifica que la cadena no contenga caracteres especiales o espacios en blanco.
+     */
     private boolean isLegal(String str) {
         return !(str.contains("%") || str.contains("'") ||
                 str.contains("\"") || str.contains(";") ||

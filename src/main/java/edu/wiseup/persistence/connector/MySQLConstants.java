@@ -1,5 +1,10 @@
 package edu.wiseup.persistence.connector;
 
+/**
+ * MySQLConstants es una clase que contiene las constantes utilizadas en la configuración de la conexión a una base de datos MySQL.
+ * Estas constantes representan las propiedades clave utilizadas para cargar los valores desde el archivo de configuración.
+ */
+
 public class MySQLConstants {
     public static final String PASSWD = "jdbc.mysql.passwd";
     public static final String USER = "jdbc.mysql.user";

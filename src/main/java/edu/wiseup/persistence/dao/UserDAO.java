@@ -5,20 +5,41 @@ import lombok.Data;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * La clase UserDAO representa un usuario en el sistema.
+ * Contiene campos para el identificador del usuario, nombre de usuario y contraseña.
+ * También incluye un constructor que permite crear un objeto UserDAO a partir de un ResultSet obtenido de la base de datos.
+ */
 @Data
 public class UserDAO {
-    private int id;
-    private String username;
-    private String password;
+    // Campos del usuario
+    private int id;                 // Identificador del usuario
+    private String username;        // Nombre de usuario
+    private String password;        // Contraseña
 
+    /**
+     * Constructor vacío de la clase UserDAO.
+     */
     public UserDAO() {
 
     }
 
+    /**
+     * Constructor de la clase UserDAO que toma el identificador y el nombre de usuario como parámetros.
+     * Este constructor está marcado como "TODO BORRARSE AL CORREGIR LOS TESTS" y probablemente se elimine en el futuro.
+     *
+     * @param id1       El identificador del usuario.
+     * @param userName1 El nombre de usuario.
+     */
     public UserDAO(int id1, String userName1) {
 
-    } //TODO BORRARSE AL CORREGIR LOS TESTS
+    }
 
+    /**
+     * Constructor de la clase UserDAO que crea un objeto UserDAO a partir de un ResultSet obtenido de la base de datos.
+     *
+     * @param result El ResultSet que contiene los datos del usuario.
+     */
     public UserDAO(ResultSet result) {
         try {
             this.id = result.getInt("id");

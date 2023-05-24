@@ -1,4 +1,3 @@
-package edu.wiseup;
 
 public class CredentialsConstants {
 

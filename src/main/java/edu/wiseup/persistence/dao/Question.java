@@ -5,26 +5,47 @@ import lombok.Data;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * La clase Question representa una pregunta en el sistema.
+ * Contiene campos para el identificador, texto de la pregunta, opciones de respuesta, respuesta correcta y categoría.
+ * También incluye un constructor que permite crear un objeto Question a partir de un ResultSet obtenido de la base de datos.
+ */
 @Data
 public class Question {
-    private int id;
-    private String question;
-    private String image;
-    private String optionA;
-    private String optionB;
-    private String optionC;
-    private String optionD;
-    private char answer;
-    private String category;
+    // Campos de la pregunta
+    private int id;                 // Identificador de la pregunta
+    private String question;        // Texto de la pregunta
+    private String image;           // Imagen asociada a la pregunta
+    private String optionA;         // Opción A de respuesta
+    private String optionB;         // Opción B de respuesta
+    private String optionC;         // Opción C de respuesta
+    private String optionD;         // Opción D de respuesta
+    private char answer;            // Respuesta correcta
+    private String category;        // Categoría de la pregunta
 
+    /**
+     * Constructor vacío de la clase Question.
+     */
     public Question() {
 
     }
 
+    /**
+     * Constructor de la clase Question que toma el identificador y el texto de la pregunta como parámetros.
+     * Este constructor está marcado como "TODO BORRARSE AL CORREGIR LOS TESTS" y probablemente se elimine en el futuro.
+     *
+     * @param i El identificador de la pregunta.
+     * @param s El texto de la pregunta.
+     */
     public Question(int i, String s) {
 
-    } //TODO BORRARSE AL CORREGIR LOS TESTS
+    }
 
+    /**
+     * Constructor de la clase Question que crea un objeto Question a partir de un ResultSet obtenido de la base de datos.
+     *
+     * @param result El ResultSet que contiene los datos de la pregunta.
+     */
     public Question(ResultSet result) {
         try {
             this.id = result.getInt("id");
