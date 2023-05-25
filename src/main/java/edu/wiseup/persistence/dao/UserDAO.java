@@ -26,12 +26,11 @@ public class UserDAO {
 
     /**
      * Constructor de la clase UserDAO que toma el identificador y el nombre de usuario como parámetros.
-     * Este constructor está marcado como "TODO BORRARSE AL CORREGIR LOS TESTS" y probablemente se elimine en el futuro.
      *
-     * @param id1       El identificador del usuario.
-     * @param userName1 El nombre de usuario.
+     * @param id       El identificador del usuario.
+     * @param username El nombre de usuario.
      */
-    public UserDAO(int id1, String userName1) {
+    public UserDAO(int id, String username) {
 
     }
 

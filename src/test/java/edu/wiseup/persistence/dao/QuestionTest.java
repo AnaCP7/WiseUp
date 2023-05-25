@@ -14,7 +14,6 @@ public class QuestionTest {
         ResultSet resultSet = Mockito.mock(ResultSet.class);
         Mockito.when(resultSet.getInt("id")).thenReturn(1);
         Mockito.when(resultSet.getString("question")).thenReturn("Sample question");
-        Mockito.when(resultSet.getString("image")).thenReturn("sample.jpg");
         Mockito.when(resultSet.getString("option_a")).thenReturn("Option A");
         Mockito.when(resultSet.getString("option_b")).thenReturn("Option B");
         Mockito.when(resultSet.getString("option_c")).thenReturn("Option C");
@@ -26,7 +25,6 @@ public class QuestionTest {
 
         Assertions.assertEquals(1, question.getId());
         Assertions.assertEquals("Sample question", question.getQuestion());
-        Assertions.assertEquals("sample.jpg", question.getImage());
         Assertions.assertEquals("Option A", question.getOptionA());
         Assertions.assertEquals("Option B", question.getOptionB());
         Assertions.assertEquals("Option C", question.getOptionC());

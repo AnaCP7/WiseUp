@@ -64,6 +64,7 @@
 <body>
 <!-- Formulario para realizar el cuestionario -->
 <% Instant start = Instant.now(); %>
+<h2>WiseUp Quiz</h2>
 <form action="/WiseUp/quiz-done-servlet" method="POST">
 <%
 ArrayList<Question> questions = (ArrayList<Question>) session.getAttribute("questions");

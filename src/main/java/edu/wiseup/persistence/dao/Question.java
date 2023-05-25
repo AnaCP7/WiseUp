@@ -15,7 +15,6 @@ public class Question {
     // Campos de la pregunta
     private int id;                 // Identificador de la pregunta
     private String question;        // Texto de la pregunta
-    private String image;           // Imagen asociada a la pregunta
     private String optionA;         // Opción A de respuesta
     private String optionB;         // Opción B de respuesta
     private String optionC;         // Opción C de respuesta
@@ -32,12 +31,11 @@ public class Question {
 
     /**
      * Constructor de la clase Question que toma el identificador y el texto de la pregunta como parámetros.
-     * Este constructor está marcado como "TODO BORRARSE AL CORREGIR LOS TESTS" y probablemente se elimine en el futuro.
      *
-     * @param i El identificador de la pregunta.
-     * @param s El texto de la pregunta.
+     * @param id        El identificador de la pregunta.
+     * @param question  El texto de la pregunta.
      */
-    public Question(int i, String s) {
+    public Question(int id, String question) {
 
     }
 
@@ -50,7 +48,6 @@ public class Question {
         try {
             this.id = result.getInt("id");
             this.question = result.getString("question");
-            this.image = result.getString("image");
             this.optionA = result.getString("option_a");
             this.optionB = result.getString("option_b");
             this.optionC = result.getString("option_c");

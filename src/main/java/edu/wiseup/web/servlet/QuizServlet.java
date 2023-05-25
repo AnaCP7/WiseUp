@@ -15,7 +15,6 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
-import java.util.stream.IntStream;
 
 /**
  * Servlet utilizado para generar un cuestionario aleatorio y redirigir al usuario a la página del cuestionario.
@@ -48,7 +47,14 @@ public class QuizServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try (Connection con = new MySQLConnector().getMySQLConnection()) {
             QuestionManager man = new QuestionManager();
-            int questionsTotal = man.numberOfQuestions(con);
+            String category = (String) req.getSession().getAttribute("category");
+            int questionsTotal;
+
+            if (category.equals("all")) {
+                questionsTotal = man.numberOfQuestions(con);
+            } else {
+                questionsTotal = man.numberOfQuestionsByCategory(con, category);
+            }
 
             ArrayList<Integer> questionsIDs = new ArrayList<>();
             Random random = new Random();
@@ -63,7 +69,12 @@ public class QuizServlet extends HttpServlet {
             }
 
             // Obtener las preguntas correspondientes a los IDs generados
-            ArrayList<Question> questions = man.findQuestionsById(con, questionsIDs);
+            ArrayList<Question> questions;
+            if (category.equals("all")) {
+                questions = man.findQuestionsById(con, questionsIDs);
+            } else {
+                questions = man.findQuestionsByIdByCategory(con, questionsIDs, category);
+            }
 
             // Guardar las preguntas en los atributos de sesión
             req.getSession().setAttribute("questions", questions);

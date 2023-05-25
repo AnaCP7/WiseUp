@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Profile</title>
+    <title>Play</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Facebook and Twitter integration -->
@@ -54,8 +54,8 @@
                     </div>
                     <div class="col-xs-10 text-right menu-1">
                         <ul>
-                            <li class="active"><a href="index.html">Home</a></li>
-                            <li class="has-dropdown">
+                            <li><a href="index.html">Home</a></li>
+                            <li class="active has-dropdown">
                                 <a href="play.html">Play</a>
                                 <ul class="dropdown">
                                     <li><a href="/WiseUp/quiz/quiz-start.jsp">Quiz</a></li>
@@ -78,13 +78,34 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center">
                     <div class="display-t js-fullheight">
-                        <div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn">
-                            <h1>When learning is enjoyable, knowledge becomes limitless.</h1>
-                            <h2>Start playing or view the ranking!
-                            </h2>
+                        <div class="display-tc js-fullheight animate-box" data-animate-effect="fadeIn"
+                            style="width: 100vw;">
+                            <h1>Choose your category!</h1>
+                            <br>
                             <p>
-                                <a class="btn btn-primary btn-lg btn-demo" href="play.html">Play now</a>
-                                <a class="btn btn-primary btn-lg btn-learn" href="/WiseUp/quiz/ranking.jsp">Ranking</a>
+                                <a class="btn btn-primary btn-lg btn-demo" href="/WiseUp/quiz/quiz-start.jsp?category=all">
+                                    All Questions</a>
+                                <a class="btn btn-primary btn-lg" href="/WiseUp/quiz/quiz-start.jsp?category=women"
+                                    style="background: #E83EF5 !important; border: none; color: #fff !important;">
+                                    Lost Women</a>
+                            </p>
+                            <br>
+                            <p>
+                                <a class="btn btn-primary btn-lg btn-learn"
+                                   href="/WiseUp/quiz/quiz-start.jsp?category=art">Art</a>
+                                <a class="btn btn-primary btn-lg btn-learn"
+                                   href="/WiseUp/quiz/quiz-start.jsp?category=art_history">Art History</a>
+                            </p>
+                            <p>
+                                <a class="btn btn-primary btn-lg"
+                                   style="background: #FFAA80 !important; border: none; color: #000 !important;"
+                                   href="/WiseUp/quiz/quiz-start.jsp?category=technology">Technology</a>
+                                <a class="btn btn-primary btn-lg"
+                                   style="background: #FFAA80 !important; border: none; color: #000 !important;"
+                                   href="/WiseUp/quiz/quiz-start.jsp?category=literature">Literature</a>
+                                <a class="btn btn-primary btn-lg"
+                                   style="background: #FFAA80 !important; border: none; color: #000 !important;"
+                                   href="/WiseUp/quiz/quiz-start.jsp?category=science">Science</a>
                             </p>
                         </div>
                     </div>

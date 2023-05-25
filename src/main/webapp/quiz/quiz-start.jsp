@@ -24,7 +24,7 @@
             text-align: center; /* Se agrega la alineación centrada */
         }
 
-        h2 {
+        h2, h3 {
             margin-bottom: 20px;
         }
 
@@ -55,6 +55,32 @@
     </style>
 </head>
 <body>
+    <% String category = request.getParameter("category");
+    String categoryTitle;
+    if (category == null) {
+        category = "all";
+        categoryTitle = "All";
+    } else if (category.equals("women")) {
+        categoryTitle = "Women";
+    } else if (category.equals("art")) {
+        categoryTitle = "Art";
+    } else if (category.equals("art_history")) {
+        categoryTitle = "Art History";
+    } else if (category.equals("technology")) {
+        categoryTitle = "Technology";
+    } else if (category.equals("science")) {
+        categoryTitle = "Science";
+    } else if (category.equals("literature")) {
+        categoryTitle = "Literature";
+    } else {
+        category = "all";
+        categoryTitle = "All";
+    }
+
+    session.setAttribute("category", category);%>
+
+    <h2>WiseUp Quiz</h2>
+    <h3>Category: <%=categoryTitle%> </h3>
     <div class="container">
         <h2>Instructions:</h2>
         <ul>

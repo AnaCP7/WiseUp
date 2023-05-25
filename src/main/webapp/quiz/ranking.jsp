@@ -16,6 +16,16 @@
             background-repeat: no-repeat;
         }
 
+        .container {
+            width: 400px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            text-align: center; /* Se agrega la alineación centrada */
+        }
+
         h2 {
             text-align: center;
         }
@@ -68,8 +78,8 @@
     List<Score> scores = (List<Score>) session.getAttribute("scores");
     session.removeAttribute("scores");
     if (scores == null) { %>
-        <form action="/WiseUp/ranking-servlet" method="POST">
-            <button type="submit">Mostrar ranking</button>
+        <form style="margin:200px" action="/WiseUp/ranking-servlet" method="POST">
+            <button class="button" type="submit"><h3>Mostrar ranking</h3></button>
         </form>
     <% }
     else { %>
@@ -83,18 +93,17 @@
             </tr>
             <%
             long n = 1;
-            for (Score score : scores) { %>
+            for(Score score : scores){%>
                 <tr>
-                    <td><%= n++ %></td>
-                    <td><%= score.getScore() %></td>
-                    <td><%= score.getUser().getUsername() %></td>
-                    <td><%= score.getDate().toString().substring(0, 10) %></td>
+                    <td><%=n++%></td>
+                    <td><%=score.getScore()%></td>
+                    <td><%=score.getUser().getUsername()%></td>
+                    <td><%=score.getDate().toString().substring(0, 10)%></td>
                 </tr>
-            <% } %>
+            <%}%>
         </table>
-    <% } %>
+    <%}%>
     <!-- Botón "Go back" -->
     <a href="/WiseUp/profile-page/index.html" class="button">Go back</a>
 </body>
 </html>
-

@@ -36,6 +36,24 @@ public class QuestionManager implements Findable<Question> {
         }
     }
 
+    public List<Question> findAllByCategory(Connection con, String category) {
+        try (Statement stm=con.createStatement()) {
+            ResultSet result = stm.executeQuery("SELECT * FROM question " + getWhere(category));
+
+            List<Question> questions = new ArrayList<>();
+
+            while (result.next()) {
+                questions.add(new Question(result));
+            }
+
+            return questions;
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     /**
      * Obtiene el número total de preguntas en la base de datos.
      *
@@ -51,6 +69,21 @@ public class QuestionManager implements Findable<Question> {
             }
             return number;
         } catch (SQLException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    public int numberOfQuestionsByCategory(Connection con, String category) {
+        try (Statement stm = con.createStatement()) {
+            ResultSet result = stm.executeQuery("SELECT COUNT(*) FROM question " + getWhere(category));
+            int number = 0;
+            if (result.next()) {
+                number = result.getInt(1);
+            }
+            return number;
+        }
+        catch (SQLException e) {
             e.printStackTrace();
             return -1;
         }
@@ -96,5 +129,27 @@ public class QuestionManager implements Findable<Question> {
             questions.add(findById(con, id));
         }
         return questions;
+    }
+
+    public ArrayList<Question> findQuestionsByIdByCategory(Connection con, ArrayList<Integer> ids, String category) {
+        List<Question> allQuestions = findAllByCategory(con, category);
+        ArrayList<Question> questions = new ArrayList<>();
+        for (int id : ids) {
+            questions.add(allQuestions.get(id));
+        }
+        return questions;
+    }
+
+    private String getWhere(String condition) {
+        if (condition.equals("art") || condition.equals("art_history") ||
+                condition.equals("technology") || condition.equals("science") || condition.equals("literature")) {
+            return "WHERE category = '" + condition + "'";
+        }
+        else if (condition.equals("women")) {
+            return "WHERE women = 1";
+        }
+        else {
+            return "";
+        }
     }
 }
