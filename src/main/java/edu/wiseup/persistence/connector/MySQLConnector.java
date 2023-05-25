@@ -53,7 +53,7 @@ public class MySQLConnector {
      *
      * @return La URL de conexión a la base de datos.
      */
-    private String getURL() {
+    public String getURL() {
         // Ejemplo de URL: jdbc:mysql://localhost:3306/world?user=sa&password=12345678&useSSL=false;
         return new StringBuilder().append(prop.getProperty(MySQLConstants.URL_PREFIX))
                 .append(prop.getProperty(MySQLConstants.URL_HOST)).append(":")
