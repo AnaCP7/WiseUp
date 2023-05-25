@@ -107,7 +107,7 @@
     <a href="/WiseUp/profile-page/index.html" class="button">Go back</a>
     <!-- Botón "Export to PDF" -->
     <form action="/WiseUp/export-pdf-servlet" method="POST" target="_blank">
-      <button class="button" type="submit">Export to PDF</button>
+      <button class="button" type="submit">Download PDF</button>
     </form>
 
 </body>

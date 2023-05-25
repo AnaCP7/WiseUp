@@ -18,18 +18,17 @@ import java.io.OutputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-@WebServlet(name = "ExportPdfServlet", urlPatterns = { "/export-pdf-servlet" })
 
+@WebServlet(name = "ExportPdfServlet", urlPatterns = { "/export-pdf-servlet" })
 public class ExportPdfServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
 
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition", "attachment; filename=\"ranking.pdf\"");
+        response.setHeader("Content-Disposition", "inline; filename=\"ranking.pdf\"");
 
         try (OutputStream outputStream = response.getOutputStream()) {
             Document document = new Document();
@@ -113,8 +112,6 @@ public class ExportPdfServlet extends HttpServlet {
                     }
                 }
             }
-
-            document.close();
         } catch (DocumentException e) {
             e.printStackTrace();
         }
