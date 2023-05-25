@@ -3,6 +3,7 @@
 <html>
 <head>
   <style>
+    /* Estilos CSS para la apariencia de la página */
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
@@ -45,6 +46,15 @@
       transform: scale(1.05);
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
+    .comment-input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 10px;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+    }
   </style>
 </head>
 
@@ -57,6 +67,7 @@
   </div>
   <div class="score-message">
     <%
+    // Código Java que muestra un mensaje basado en la puntuación
     int score = (int) session.getAttribute("score");
     String message = "";
     if (score == 0) {
@@ -83,6 +94,9 @@
     session.removeAttribute("score");
     session.removeAttribute("questions");
     %>
+
+    <br>
+    <!-- Botón para enviar el comentario -->
     <button class="submit-button" type="submit">Submit score to ranking</button>
   </form>
 </div>
