@@ -55,11 +55,11 @@ public class CreateAccountServlet extends HttpServlet {
                 return;
             }
 
-            resp.sendRedirect("/WiseUp/login/login-form/createAccount.jsp");
+            resp.sendRedirect("/WiseUp/login/create-account.jsp");
 
         } catch (ClassNotFoundException | SQLException e) {
             req.getSession().setAttribute("error", "Se ha producido un error. Intente nuevamente.");
-            resp.sendRedirect("/WiseUp/login/login-form/createAccount.jsp");
+            resp.sendRedirect("/WiseUp/login/create-account.jsp");
         }
     }
 

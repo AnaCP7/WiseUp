@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <title>Quiz Results</title>
+    <title>Quiz Ranking</title>
     <style>
         /* Estilos CSS para la apariencia de la página */
         body {
@@ -102,13 +102,13 @@
                 </tr>
             <%}%>
         </table>
+        <!-- Botón "Go back" -->
+        <a href="/WiseUp/home" class="button">Go back</a>
+        <!-- Botón "Export to PDF" -->
+        <form action="/WiseUp/export-pdf-servlet" method="POST" target="_blank">
+          <button class="button" type="submit">Download PDF</button>
+        </form>
     <%}%>
-    <!-- Botón "Go back" -->
-    <a href="/WiseUp/profile-page/index.html" class="button">Go back</a>
-    <!-- Botón "Export to PDF" -->
-    <form action="/WiseUp/export-pdf-servlet" method="POST" target="_blank">
-      <button class="button" type="submit">Download PDF</button>
-    </form>
 
 </body>
 </html>

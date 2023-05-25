@@ -2,25 +2,19 @@ package edu.wiseup.web.filter;
 
 import edu.wiseup.web.servlet.dto.User;
 
-import javax.servlet.DispatcherType;
-import javax.servlet.Filter;
-import javax.servlet.FilterChain;
-import javax.servlet.FilterConfig;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * El filtro SessionFilter se aplica a las páginas dentro de "/quiz/*" y "/home/*" para asegurarse de que
- * solo se puedan acceder a ellas si hay una sesión de usuario activa. Si no hay una sesión de usuario activa,
- * el filtro redirige al usuario a la página de inicio de sesión "login.jsp".
+ * El filtro SessionFilter se aplica a la página "/login/login.jsp" para asegurarse de que se evite
+ * acceder a ella si hay una sesión de usuario activa. Si no hay una sesión de usuario activa,
+ * el filtro deja continuar a la página de inicio de sesión "login.jsp".
  */
-@WebFilter(urlPatterns = {"/quiz/*", "/home/*"}, dispatcherTypes = {DispatcherType.REQUEST, DispatcherType.FORWARD})
-public class SessionFilter implements Filter {
+@WebFilter(urlPatterns = {"/login/login.jsp"}, dispatcherTypes = {DispatcherType.REQUEST, DispatcherType.FORWARD})
+public class LoginFilter implements Filter {
 
     /**
      * Inicializa el filtro.
@@ -51,11 +45,11 @@ public class SessionFilter implements Filter {
 
         User user = (User) req.getSession().getAttribute("userSession");
 
-        if (user == null) {
-            // No hay una sesión de usuario activa, redirigir al usuario a la página de inicio de sesión "login.jsp"
-            resp.sendRedirect("/WiseUp/login/login.jsp");
+        if (user != null) {
+            // Hay una sesión de usuario activa, redirigir al usuario a la página de inicio "/home"
+            resp.sendRedirect("/WiseUp/home");
         } else {
-            // Hay una sesión de usuario activa, pasar la solicitud y respuesta filtradas a la siguiente etapa del filtro
+            // No hay una sesión de usuario activa, pasar la solicitud y respuesta filtradas a la siguiente etapa del filtro
             filterChain.doFilter(servletRequest, servletResponse);
         }
     }

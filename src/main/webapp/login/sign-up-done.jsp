@@ -47,9 +47,10 @@
     </style>
 </head>
 <body>
+    <%session.removeAttribute("userSession");%>
     <div class="container">
         <h2>Account created correctly!</h2>
-        <a class="button" href="/WiseUp/profile-page/index.html">Accept</a>
+        <a class="button" href="/WiseUp/home">Accept</a>
     </div>
 </body>
 </html>

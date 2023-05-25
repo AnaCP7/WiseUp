@@ -60,7 +60,7 @@
                 </div>
                 <div class="signup-image">
                     <figure><img src="images/loginImage.jpg" alt="sing up image"></figure>
-                    <a href="logIn.jsp" class="signup-image-link">I am already a member</a>
+                    <a href="login.jsp" class="signup-image-link">I am already a member</a>
                 </div>
             </div>
         </div>

@@ -5,6 +5,7 @@
 
 <html>
 <head>
+  <title>Quiz</title>
   <style>
     /* Estilos CSS para la apariencia de la página */
     body {

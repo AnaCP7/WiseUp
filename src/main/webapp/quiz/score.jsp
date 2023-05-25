@@ -2,6 +2,7 @@
 
 <html>
 <head>
+  <title>Quiz Results</title>
   <style>
     /* Estilos CSS para la apariencia de la página */
     body {

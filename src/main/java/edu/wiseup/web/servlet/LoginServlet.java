@@ -75,12 +75,12 @@ public class LoginServlet extends HttpServlet {
                 }
 
                 // Redirigir de nuevo a la página de inicio de sesión si hubo errores
-                resp.sendRedirect("/WiseUp/login/login-form/logIn.jsp");
+                resp.sendRedirect("/WiseUp/login/login.jsp");
 
             } catch (ClassNotFoundException | SQLException e) {
                 // Manejo de excepciones en caso de errores en la conexión o consulta a la base de datos
                 req.getSession().setAttribute("error", "Se ha producido un error. Intente nuevamente.");
-                resp.sendRedirect("/WiseUp/login/login-form/logIn.jsp");
+                resp.sendRedirect("/WiseUp/login/login.jsp");
             }
         }
     }
