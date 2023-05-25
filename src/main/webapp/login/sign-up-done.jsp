@@ -1,5 +1,7 @@
 <%@ page pageEncoding="UTF-8" %>
 
+<!-- Página de confirmación de creación de cuenta -->
+
 <html>
 <head>
     <title>Correct loggin</title>

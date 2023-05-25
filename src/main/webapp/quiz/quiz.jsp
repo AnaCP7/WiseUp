@@ -6,6 +6,7 @@
 <html>
 <head>
   <style>
+    /* Estilos CSS para la apariencia de la página */
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
@@ -61,6 +62,7 @@
   </style>
 </head>
 <body>
+<!-- Formulario para realizar el cuestionario -->
 <% Instant start = Instant.now(); %>
 <form action="/WiseUp/quiz-done-servlet" method="POST">
 <%
@@ -69,12 +71,14 @@ Question question = new Question();
 for (int i = 0; i < 5; i++) {
     question = questions.get(i);
     %>
+    <!-- Contenedor de la pregunta -->
     <div class="question-container">
       <div class="question">
         <span class="question-number">Question <%=i+1%>/5:</span> <br>
         <%=question.getQuestion()%>
       </div>
       <div class="options">
+        <!-- Opciones de respuesta -->
         <label class="option-label"><input type="radio" name="question-<%=i+1%>" value="option-a"/> <%=question.getOptionA()%></label>
         <label class="option-label"><input type="radio" name="question-<%=i+1%>" value="option-b"/> <%=question.getOptionB()%></label>
         <label class="option-label"><input type="radio" name="question-<%=i+1%>" value="option-c"/> <%=question.getOptionC()%></label>
@@ -83,7 +87,8 @@ for (int i = 0; i < 5; i++) {
     </div>
 <% } %>
     <input type="hidden" name="start" value="<%=start%>"/>
-<button class="done-button" type="submit">Done!</button>
+    <!-- Botón para enviar el cuestionario -->
+    <button class="done-button" type="submit">Done!</button>
 </form>
 </body>
 </html>

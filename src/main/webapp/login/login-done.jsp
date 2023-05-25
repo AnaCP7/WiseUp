@@ -1,17 +1,24 @@
 <%@ page pageEncoding="UTF-8" %>
 
+<!--
+    Página JSP para la confirmación de inicio de sesión correcto.
+    Muestra un mensaje de confirmación y un botón de aceptar para redirigir al usuario a la página de perfil.
+-->
+
 <html>
 <head>
-    <title>Correct loggin</title>
+    <title>Correct login</title>
     <style>
         body {
-                background-image: url("images/profilebk.jpg");
-                background-size: cover;
-                font-family: Arial, sans-serif;
-                background-repeat: no-repeat;
-               }
+            /* Estilos para el fondo y la fuente */
+            background-image: url("images/profilebk.jpg");
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            background-repeat: no-repeat;
+        }
 
         .container {
+            /* Estilos para el contenedor principal */
             width: 300px;
             margin: 100px auto;
             padding: 20px;
@@ -22,10 +29,12 @@
         }
 
         h2 {
+            /* Estilos para el encabezado */
             text-align: center;
         }
 
         .button {
+            /* Estilos para el botón */
             display: inline-block;
             width: 120px;
             padding: 10px;
@@ -40,6 +49,7 @@
         }
 
         .button:hover {
+            /* Estilos para el efecto hover del botón */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
     </style>

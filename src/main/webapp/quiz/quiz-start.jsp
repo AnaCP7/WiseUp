@@ -4,14 +4,16 @@
 <head>
     <title>Quiz Instructions</title>
     <style>
+        /* Estilos CSS para la apariencia de la página */
         body {
-              font-family: Arial, sans-serif;
-              margin: 20px;
-              background-image: url("images/startQuizbk.jpg");
-              background-size: cover;
-              background-repeat: no-repeat;
-            }
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-image: url("images/startQuizbk.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
 
+        /* Estilos para el contenedor principal */
         .container {
             width: 400px;
             margin: 100px auto;
@@ -26,12 +28,14 @@
             margin-bottom: 20px;
         }
 
+        /* Estilos para la lista de instrucciones */
         ul {
             list-style-type: disc;
             padding-left: 20px;
             text-align: left;
         }
 
+        /* Estilos para el botón de inicio del cuestionario */
         .button {
             display: inline-block;
             padding: 10px 20px;
@@ -54,11 +58,13 @@
     <div class="container">
         <h2>Instructions:</h2>
         <ul>
+            <!-- Lista de instrucciones -->
             <li>Have fun!</li>
             <li>The faster you finish, the higher your score is.</li>
             <li>You can see your score at the end of the quiz.</li>
         </ul>
         <form action="/WiseUp/quiz-servlet" method="POST">
+            <!-- Botón para iniciar el cuestionario -->
             <button class="button" type="submit">Start quiz</button>
         </form>
     </div>

@@ -17,11 +17,31 @@ import java.time.Instant;
 
 @WebServlet(urlPatterns = {"/submit-score-servlet"})
 public class SubmitScoreServlet extends HttpServlet {
+
+    /**
+     * Maneja las solicitudes GET enviadas al servlet.
+     * Redirige la solicitud a doPost para mantener la consistencia.
+     *
+     * @param req  La solicitud HTTP.
+     * @param resp La respuesta HTTP.
+     * @throws ServletException Si ocurre un error de servlet.
+     * @throws IOException      Si ocurre un error de entrada/salida.
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
     }
 
+    /**
+     * Maneja las solicitudes POST enviadas al servlet.
+     * Recupera el puntaje del usuario desde la solicitud y lo guarda en la base de datos.
+     * Luego redirige la solicitud a la página de clasificación (ranking-servlet) para actualizar la lista de puntajes.
+     *
+     * @param req  La solicitud HTTP.
+     * @param resp La respuesta HTTP.
+     * @throws ServletException Si ocurre un error de servlet.
+     * @throws IOException      Si ocurre un error de entrada/salida.
+     */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
