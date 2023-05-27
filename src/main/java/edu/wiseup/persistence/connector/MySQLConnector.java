@@ -16,7 +16,7 @@ import java.util.Properties;
 public class MySQLConnector {
 
     @Getter
-    private Properties prop = new Properties();
+    private static Properties prop = new Properties();
 
     /**
      * Constructor de MySQLConnector.
@@ -37,7 +37,7 @@ public class MySQLConnector {
      * @throws ClassNotFoundException Si no se encuentra el controlador de la base de datos.
      * @throws SQLException           Si ocurre un error al establecer la conexión.
      */
-    public Connection getMySQLConnection() throws ClassNotFoundException, SQLException {
+    public static Connection getMySQLConnection() throws ClassNotFoundException, SQLException {
         try {
             // Carga dinámicamente el controlador MySQL
             Class.forName(prop.getProperty(MySQLConstants.DRIVER));
@@ -53,7 +53,7 @@ public class MySQLConnector {
      *
      * @return La URL de conexión a la base de datos.
      */
-    public String getURL() {
+    public static String getURL() {
         // Ejemplo de URL: jdbc:mysql://localhost:3306/world?user=sa&password=12345678&useSSL=false;
         return new StringBuilder().append(prop.getProperty(MySQLConstants.URL_PREFIX))
                 .append(prop.getProperty(MySQLConstants.URL_HOST)).append(":")

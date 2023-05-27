@@ -15,6 +15,16 @@
     <servlet-class>com.example.myapp.LoginFormServlet</servlet-class>
   </servlet>
 
+  <servlet>
+    <servlet-name>PDFGeneratorServlet</servlet-name>
+    <servlet-class>edu.wiseup.web.servlet.PDFGeneratorServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PDFGeneratorServlet</servlet-name>
+    <url-pattern>/pdf-generator-servlet</url-pattern>
+  </servlet-mapping>
+
+
   <servlet-mapping>
     <servlet-name>LoginFormServlet</servlet-name>
     <url-pattern>/loginform</url-pattern>
