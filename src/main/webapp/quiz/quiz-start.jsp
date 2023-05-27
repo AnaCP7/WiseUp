@@ -146,7 +146,7 @@
         <li>The faster you finish, the higher your score is.</li>
         <li>You can see your score at the end of the quiz.</li>
     </ul>
-    <form action="/WiseUp/quiz/quiz" method="post">
+     <form action="/WiseUp/quiz-servlet" method="POST">
         <input type="hidden" name="category" value="<%= category %>">
         <input type="submit" class="button" value="Start Quiz">
     </form>
