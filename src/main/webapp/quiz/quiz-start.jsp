@@ -113,10 +113,7 @@
    String categoryTitle;
    String categoryClass;
 
-   if (category == null || category.equals("all")) {
-       categoryTitle = "All Questions";
-       categoryClass = "category-all";
-   } else if (category.equals("women")) {
+   if (category.equals("women")) {
        categoryTitle = "Lost Women";
        categoryClass = "category-women";
    } else if (category.equals("art")) {
@@ -136,7 +133,7 @@
        categoryClass = "category-science";
    } else {
        categoryTitle = "All Questions";
-       categoryClass = "";
+       categoryClass = "category-all";
    } %>
 <div class="container">
     <h2>Welcome to the Quiz!</h2>
@@ -147,9 +144,9 @@
         <li>You can see your score at the end of the quiz.</li>
     </ul>
      <form action="/WiseUp/quiz-servlet" method="POST">
-        <input type="hidden" name="category" value="<%= category %>">
-        <input type="submit" class="button" value="Start Quiz">
-    </form>
+         <!-- Botón para iniciar el cuestionario -->
+         <button class="button" type="submit">Start quiz</button>
+     </form>
 </div>
 </body>
 </html>
