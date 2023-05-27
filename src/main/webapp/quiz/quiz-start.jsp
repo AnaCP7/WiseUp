@@ -6,7 +6,7 @@
     <style>
         /* Estilos CSS para la apariencia de la página */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Inconsolata', monospace;
             margin: 20px;
             background-image: url("images/startQuizbk.jpg");
             background-size: cover;
@@ -21,7 +21,7 @@
             background-color: #ffffff;
             border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-            text-align: center; /* Se agrega la alineación centrada */
+            text-align: center;
         }
 
         h2, h3 {
@@ -30,15 +30,22 @@
 
         /* Estilos para la lista de instrucciones */
         ul {
+            font-size: 1.2em;
             list-style-type: disc;
             padding-left: 20px;
             text-align: left;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        ul li {
+            margin-bottom: 10px;
         }
 
         /* Estilos para el botón de inicio del cuestionario */
         .button {
             display: inline-block;
-            padding: 10px 20px;
+            padding: 15px 30px;
             margin-top: 20px;
             background-color: #007bff;
             color: #ffffff;
@@ -47,52 +54,102 @@
             cursor: pointer;
             transition: box-shadow 0.3s;
             text-decoration: none;
+            font-size: 18px; /* Ajusta el tamaño de fuente según tus preferencias */
         }
+
 
         .button:hover {
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
         }
+
+        /* Estilos para los títulos de categoría */
+        .category-women {
+            background-color: #E83EF5;
+            color: #ffffff;
+            display: inline-block;
+            padding: 15px;
+            border-radius: 25px;
+            margin-bottom: 10px;
+            font-weight: normal; /* Quita el estilo negrita */
+        }
+
+        .category-all {
+            background-color: #DD356E;
+            color: #ffffff;
+            display: inline-block;
+            padding: 15px;
+            border-radius: 25px;
+            margin-bottom: 10px;
+            font-weight: normal; /* Quita el estilo negrita */
+        }
+
+        .category-art,
+        .category-art-history {
+            background-color: #fee856;
+            color: #000000;
+            display: inline-block;
+            padding: 15px;
+            border-radius: 25px;
+            margin-bottom: 10px;
+            font-weight: normal; /* Quita el estilo negrita */
+        }
+
+         .category-technology,
+         .category-literature,
+         .category-science {
+            background-color: #FFAA80;
+            color: #000000;
+            display: inline-block;
+            padding: 15px;
+            border-radius: 25px;
+            margin-bottom: 10px;
+            font-weight: normal;
+        }
+
     </style>
 </head>
 <body>
-    <% String category = request.getParameter("category");
-    String categoryTitle;
-    if (category == null) {
-        category = "all";
-        categoryTitle = "All";
-    } else if (category.equals("women")) {
-        categoryTitle = "Women";
-    } else if (category.equals("art")) {
-        categoryTitle = "Art";
-    } else if (category.equals("art_history")) {
-        categoryTitle = "Art History";
-    } else if (category.equals("technology")) {
-        categoryTitle = "Technology";
-    } else if (category.equals("science")) {
-        categoryTitle = "Science";
-    } else if (category.equals("literature")) {
-        categoryTitle = "Literature";
-    } else {
-        category = "all";
-        categoryTitle = "All";
-    }
+<% String category = request.getParameter("category");
+   String categoryTitle;
+   String categoryClass;
 
-    session.setAttribute("category", category);%>
-
-    <h2>WiseUp Quiz</h2>
-    <h3>Category: <%=categoryTitle%> </h3>
-    <div class="container">
-        <h2>Instructions:</h2>
-        <ul>
-            <!-- Lista de instrucciones -->
-            <li>Have fun!</li>
-            <li>The faster you finish, the higher your score is.</li>
-            <li>You can see your score at the end of the quiz.</li>
-        </ul>
-        <form action="/WiseUp/quiz-servlet" method="POST">
-            <!-- Botón para iniciar el cuestionario -->
-            <button class="button" type="submit">Start quiz</button>
-        </form>
-    </div>
+   if (category == null || category.equals("all")) {
+       categoryTitle = "All Questions";
+       categoryClass = "category-all";
+   } else if (category.equals("women")) {
+       categoryTitle = "Lost Women";
+       categoryClass = "category-women";
+   } else if (category.equals("art")) {
+       categoryTitle = "Art";
+       categoryClass = "category-art";
+   } else if (category.equals("art_history")) {
+       categoryTitle = "Art History";
+       categoryClass = "category-art-history";
+   } else if (category.equals("technology")) {
+       categoryTitle = "Technology";
+       categoryClass = "category-technology";
+   } else if (category.equals("literature")) {
+       categoryTitle = "Literature";
+       categoryClass = "category-literature";
+   } else if (category.equals("science")) {
+       categoryTitle = "Science";
+       categoryClass = "category-science";
+   } else {
+       categoryTitle = "All Questions";
+       categoryClass = "";
+   } %>
+<div class="container">
+    <h2>Welcome to the Quiz!</h2>
+    <h3 class="<%= categoryClass %>"><%= categoryTitle %></h3>
+    <ul>
+        <li>Have fun!</li>
+        <li>The faster you finish, the higher your score is.</li>
+        <li>You can see your score at the end of the quiz.</li>
+    </ul>
+    <form action="/WiseUp/quiz/quiz" method="post">
+        <input type="hidden" name="category" value="<%= category %>">
+        <input type="submit" class="button" value="Start Quiz">
+    </form>
+</div>
 </body>
 </html>
