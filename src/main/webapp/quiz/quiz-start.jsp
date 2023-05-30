@@ -110,43 +110,51 @@
 </head>
 <body>
 <% String category = request.getParameter("category");
-   String categoryTitle;
-   String categoryClass;
+    String categoryTitle;
+    String categoryClass;
 
-   if (category.equals("women")) {
-       categoryTitle = "Lost Women";
-       categoryClass = "category-women";
-   } else if (category.equals("art")) {
-       categoryTitle = "Art";
-       categoryClass = "category-art";
-   } else if (category.equals("art_history")) {
-       categoryTitle = "Art History";
-       categoryClass = "category-art-history";
-   } else if (category.equals("technology")) {
-       categoryTitle = "Technology";
-       categoryClass = "category-technology";
-   } else if (category.equals("literature")) {
-       categoryTitle = "Literature";
-       categoryClass = "category-literature";
-   } else if (category.equals("science")) {
-       categoryTitle = "Science";
-       categoryClass = "category-science";
-   } else {
-       categoryTitle = "All Questions";
-       categoryClass = "category-all";
-   } %>
-<div class="container">
-    <h2>Welcome to the Quiz!</h2>
-    <h3 class="<%= categoryClass %>"><%= categoryTitle %></h3>
-    <ul>
-        <li>Have fun!</li>
-        <li>The faster you finish, the higher your score is.</li>
-        <li>You can see your score at the end of the quiz.</li>
-    </ul>
-     <form action="/WiseUp/quiz-servlet" method="POST">
-         <!-- Botón para iniciar el cuestionario -->
-         <button class="button" type="submit">Start quiz</button>
-     </form>
-</div>
+    if (category == null || category.equals("")) {
+        category = "all";
+        categoryTitle = "All Questions";
+        categoryClass = "category-all";
+    }
+    if (category.equals("women")) {
+        categoryTitle = "Lost Women";
+        categoryClass = "category-women";
+    } else if (category.equals("art")) {
+        categoryTitle = "Art";
+        categoryClass = "category-art";
+    } else if (category.equals("art_history")) {
+        categoryTitle = "Art History";
+        categoryClass = "category-art-history";
+    } else if (category.equals("technology")) {
+        categoryTitle = "Technology";
+        categoryClass = "category-technology";
+    } else if (category.equals("literature")) {
+        categoryTitle = "Literature";
+        categoryClass = "category-literature";
+    } else if (category.equals("science")) {
+        categoryTitle = "Science";
+        categoryClass = "category-science";
+    } else {
+        categoryTitle = "All Questions";
+        categoryClass = "category-all";
+    }
+
+    session.setAttribute("category", category);%>
+
+    <div class="container">
+        <h2>Welcome to the Quiz!</h2>
+        <h3 class="<%= categoryClass %>"><%= categoryTitle %></h3>
+        <ul>
+            <li>Have fun!</li>
+            <li>The faster you finish, the higher your score is.</li>
+            <li>You can see your score at the end of the quiz.</li>
+        </ul>
+         <form action="/WiseUp/quiz-servlet" method="POST">
+             <!-- Botón para iniciar el cuestionario -->
+             <button class="button" type="submit">Start quiz</button>
+         </form>
+    </div>
 </body>
 </html>
