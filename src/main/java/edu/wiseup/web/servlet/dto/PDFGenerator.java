@@ -1,9 +1,10 @@
-package edu.wiseup.persistence.dao;
+package edu.wiseup.web.servlet.dto;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import edu.wiseup.persistence.dao.Score;
 
 import java.io.ByteArrayOutputStream;
 import java.util.List;

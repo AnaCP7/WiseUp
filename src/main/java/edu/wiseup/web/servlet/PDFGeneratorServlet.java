@@ -3,8 +3,7 @@ package edu.wiseup.web.servlet;
 import edu.wiseup.persistence.connector.MySQLConnector;
 import edu.wiseup.persistence.manager.ScoreManager;
 import edu.wiseup.persistence.dao.Score;
-import edu.wiseup.persistence.dao.PDFGenerator;
-import edu.wiseup.web.servlet.PDFGeneratorServlet;
+import edu.wiseup.web.servlet.dto.PDFGenerator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,7 +32,6 @@ public class PDFGeneratorServlet extends HttpServlet {
     private List<Score> obtenerDatosDelRanking() {
         try {
             // Obtén una conexión a la base de datos
-            MySQLConnector connector = new MySQLConnector();
             java.sql.Connection connection = MySQLConnector.getMySQLConnection();
 
             // Crea una instancia de ScoreManager
